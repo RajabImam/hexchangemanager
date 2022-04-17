@@ -57,5 +57,9 @@ public class UserService {
             return true;
         return false;
     }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
     
 }

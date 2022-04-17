@@ -28,7 +28,7 @@ and open the template in the editor.
                         <a class="nav-link" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users">Users</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/signup">Create Account</a>
@@ -39,5 +39,31 @@ and open the template in the editor.
                 </ul>
             </div>
         </nav>
+        <div class="container">
+            <!-- Content here -->
+            <div class="row pt-3">
+                <div class="col-md-6">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Add House</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user:${users}">
+                                <td th:text="${user.firstname}"></td>
+                                <td th:text="${user.lastname}"></td>
+                                <td th:text="${user.email}"></td>
+                                <td><a href="" class="btn btn-primary">Add House</a></td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

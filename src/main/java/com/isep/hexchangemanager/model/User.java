@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -48,9 +49,14 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
       )
-    
-    
+     
     private List<Role> roles;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<House> houses;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 
     public User() {
     }
@@ -75,6 +81,24 @@ public class User {
         this.profile_img = profile_img;
         this.created_on = created_on;
     }
+
+    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img, Date created_on, List<Role> roles, List<House> houses, List<Booking> bookings) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.dob = dob;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.profile_img = profile_img;
+        this.created_on = created_on;
+        this.roles = roles;
+        this.houses = houses;
+        this.bookings = bookings;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -170,6 +194,22 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<House> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(List<House> houses) {
+        this.houses = houses;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
     
     
