@@ -211,6 +211,11 @@ public class User {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password=" + password + ", profile_img=" + profile_img + ", created_on=" + created_on + ", roles=" + roles + ", houses=" + houses + ", bookings=" + bookings + '}';
+    }
     
     
     

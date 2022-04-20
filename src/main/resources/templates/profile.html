@@ -42,41 +42,11 @@ and open the template in the editor.
         <div class="container">
             <!-- Content here -->
             <div class="row pt-3">
-                <div class="col-md-6 col-md-offset-3">
-                    
-                        <h1>Create Account</h1>
-                        <div class="alert alert-info" th:if="${exist}">
-                            <p>User already exist</p>
-                        </div>
-                        <form th:action="@{/signup}" method="post" th:object="${user}">
-                            <div class="form-group">
-                                <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" id="firstname" th:field="*{firstname}" required="required" autofocus="autofocus" />
-                                <!--<div class="text text-danger" th:if="${#field.hasErrors('firstname'}" th:errors="*{firstname}"></div>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Last Name</label>
-                                <input type="text" class="form-control" id="lastname" th:field="*{lastname}" required="required" autofocus="autofocus" />
-                                <!--<div class="text text-danger" th:if="${#field.hasErrors('lastname'}" th:errors="*{lastname}"></div>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" th:field="*{email}" required="required" autofocus="autofocus" />
-                                <!--<div class="text text-danger" th:if="${#field.hasErrors('email'}" th:errors="*{email}"></div>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" th:field="*{password}" required="required" autofocus="autofocus" />
-                                <!--<div class="text text-danger" th:if="${#field.hasErrors('password'}" th:errors="*{password}"></div>-->
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Create Account</button>
-                            <span>Already have an account? <a href="/" th:href="@{/login}">Login</a></span>
-                        </form>
-                    
+                <div class="col-md-6">
+                    <h1>Profile</h1>
+                    <h3> Hi! <span sec:authentication="name">Username</span> </h3>  
                 </div>
             </div>
         </div>
     </body>
 </html>
-
