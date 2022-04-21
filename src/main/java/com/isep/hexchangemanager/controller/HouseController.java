@@ -6,8 +6,10 @@
 package com.isep.hexchangemanager.controller;
 
 import com.isep.hexchangemanager.model.House;
+import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.service.HouseService;
 import com.isep.hexchangemanager.service.UserService;
+import java.security.Principal;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,5 +41,13 @@ public class HouseController {
         String email = (String) session.getAttribute("email");
         houseService.addHouse(house, userService.findByEmail(email));
         return "redirect:/users";
+    }
+    
+    @GetMapping("/house")
+    public String viewOwnedHouse(Model model, Principal principal){
+        String email = principal.getName();
+        User user = userService.findByEmail(email);
+        model.addAttribute("house", houseService.findUserHouse(user));
+        return "house";
     }
 }
