@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -31,16 +33,20 @@ public class SignUpController {
         return "signup";
     }
     
-    @PostMapping("/signup")
+   /* @PostMapping("/signup")
     public String createUserAccount(@Validated User user, BindingResult bindingResult, Model model){
-        
-       /* if (bindingResult.hasErrors()) {
-            return "signup";
-        }if (userService.userExist(user.getId())) {
-            model.addAttribute("exist",true);
-            return "signup";
-        }*/
+       
         userService.createUser(user);
         return "success";
+    }*/
+    
+    @PostMapping("/signup")
+    public RedirectView createUserAccount(User user, RedirectAttributes redAtt){
+       
+        userService.createUser(user);
+        RedirectView redView = new RedirectView("/login", true);
+        redAtt.addFlashAttribute("message", "Account created successfully. You can now login");
+        
+        return redView;
     }
 }

@@ -28,7 +28,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
+public class User extends Auditable<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,7 +41,6 @@ public class User {
     private String email;
     private String password;
     private String profile_img;
-    private Date created_on;
     
       @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -61,15 +60,14 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, Date created_on) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
-        this.created_on = created_on;
     }
     
     
 
-    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img, Date created_on) {
+    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
@@ -79,10 +77,9 @@ public class User {
         this.email = email;
         this.password = password;
         this.profile_img = profile_img;
-        this.created_on = created_on;
     }
 
-    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img, Date created_on, List<Role> roles, List<House> houses, List<Booking> bookings) {
+    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img, List<Role> roles, List<House> houses, List<Booking> bookings) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
@@ -92,7 +89,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.profile_img = profile_img;
-        this.created_on = created_on;
         this.roles = roles;
         this.houses = houses;
         this.bookings = bookings;
@@ -180,14 +176,7 @@ public class User {
         this.profile_img = profile_img;
     }
 
-    public Date getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(Date created_on) {
-        this.created_on = created_on;
-    }
-
+   
     public List<Role> getRoles() {
         return roles;
     }
@@ -214,7 +203,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password=" + password + ", profile_img=" + profile_img + ", created_on=" + created_on + ", roles=" + roles + ", houses=" + houses + ", bookings=" + bookings + '}';
+        return "User{" + "id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password=" + password + ", profile_img=" + profile_img + ", roles=" + roles + ", houses=" + houses + ", bookings=" + bookings + '}';
     }
     
     

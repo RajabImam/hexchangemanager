@@ -43,11 +43,10 @@ public class HouseController {
         return "redirect:/users";
     }
     
-    @GetMapping("/house")
-    public String viewOwnedHouse(Model model, Principal principal){
-        String email = principal.getName();
-        User user = userService.findByEmail(email);
-        model.addAttribute("house", houseService.findUserHouse(user));
-        return "house";
+    @GetMapping("/houses")
+    public String houseList(Model model){
+        
+        model.addAttribute("house", houseService.getHouses());
+        return "house_list";
     }
 }

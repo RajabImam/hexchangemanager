@@ -28,7 +28,7 @@ and open the template in the editor.
                         <a class="nav-link" href="#">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/house">House</a>
+                        <a class="nav-link" href="/houses">House</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/users">Users</a>
@@ -60,6 +60,7 @@ and open the template in the editor.
                         </div>
 
                     <form th:action="@{/login}" method="post">
+                        
                         <div class = "form-group">
                             <label for ="email"> Email </label> 
                             <input type="email" class = "form-control" id ="email" name = "username" placeholder="Enter Email ID" autofocus="autofocus">

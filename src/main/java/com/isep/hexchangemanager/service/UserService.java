@@ -7,6 +7,7 @@ package com.isep.hexchangemanager.service;
 
 import com.isep.hexchangemanager.model.Role;
 import com.isep.hexchangemanager.model.User;
+import com.isep.hexchangemanager.model.UserPrincipal;
 import com.isep.hexchangemanager.repository.UserRepository;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -40,7 +41,6 @@ public class UserService implements UserDetailsService{
         List<Role> roles = new ArrayList<>();
         roles.add(userRole);
         user.setRoles(roles);
-        user.setCreated_on(Date.from(Instant.now()));
         userRepository.save(user);
     }
     
@@ -54,7 +54,7 @@ public class UserService implements UserDetailsService{
         userRepository.save(user);
     }
     
-    public Optional<User> findOne(Long id){
+    public Optional<User> findById(Long id){
         return userRepository.findById(id);
     }
     
@@ -70,23 +70,34 @@ public class UserService implements UserDetailsService{
     }
 
     /*Return all users*/
-    public List<User> findAll() {
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
+
+/*    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if (user == null){
+            throw new UsernameNotFoundException("User not found");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),         
+                user.getPassword(),
+                mapRolesToAuthorities(user.getRoles()));
+    } */
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-        if (user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
+        return new UserPrincipal(user);
     }
+    
+    
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {
+   /* private Collection<? extends GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-    }
+    }*/
 
 }

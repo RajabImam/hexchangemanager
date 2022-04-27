@@ -31,7 +31,7 @@ and open the template in the editor.
                         <a class="nav-link" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/house">House</a>
+                        <a class="nav-link" href="/houses">House</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/users">Users</a>
@@ -72,14 +72,13 @@ and open the template in the editor.
                                 <td th:text="${house.name}"></td>
                                 <td th:text="${house.location}"></td>
                                 <td th:text="${house.type}"></td>
-                                <td th:text="${house.description}"></td>
-                                <td th:text="${house.status}"></td>
-                                <td th:text="${house.availability_start}"></td>
-                                <td th:text="${house.availability_end}"></td>
-                                <td th:text="${house.created_on}"></td>
+                                <td th:text="${houses.description}"></td>
+                                <td th:text="${houses.status}"></td>
+                                <td th:text="${houses.availability_start}"></td>
+                                <td th:text="${houses.availability_end}"></td>
+                                <td th:text="${houses.created_on}"></td>
                                 <td><a th:href="#" class="btn btn-primary">Change Status</a></td>
-                            </tr>
-                           
+                            </tr>                           
                         </tbody>
                     </table>
                 </div>

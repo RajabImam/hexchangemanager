@@ -5,7 +5,6 @@
  */
 package com.isep.hexchangemanager.model;
 
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,12 +17,11 @@ import javax.persistence.ManyToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Services {
+public class Services extends Auditable<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    private Date created_on;
     
     @ManyToOne
     @JoinColumn(name = "house_id")
@@ -32,9 +30,8 @@ public class Services {
     public Services() {
     }
 
-    public Services(String description, Date created_on, House house) {
+    public Services(String description, House house) {
         this.description = description;
-        this.created_on = created_on;
         this.house = house;
     }
 
@@ -52,14 +49,6 @@ public class Services {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(Date created_on) {
-        this.created_on = created_on;
     }
 
     public House getHouse() {

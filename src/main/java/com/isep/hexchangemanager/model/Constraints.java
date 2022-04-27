@@ -18,13 +18,12 @@ import javax.persistence.ManyToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Constraints {
+public class Constraints extends Auditable<String>{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    private Date created_on;
     
     @ManyToOne
     @JoinColumn(name = "house_id")
@@ -33,9 +32,8 @@ public class Constraints {
     public Constraints() {
     }
 
-    public Constraints(String description, Date created_on, House house) {
+    public Constraints(String description, House house) {
         this.description = description;
-        this.created_on = created_on;
         this.house = house;
     }
 
@@ -53,14 +51,6 @@ public class Constraints {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(Date created_on) {
-        this.created_on = created_on;
     }
 
     public House getHouse() {

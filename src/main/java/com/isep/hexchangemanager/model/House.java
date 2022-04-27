@@ -22,7 +22,7 @@ import javax.persistence.OneToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class House {
+public class House extends Auditable<String>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,6 @@ public class House {
     private Integer status;
     private Date availability_start;
     private Date availability_end;
-    private Date created_on;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -55,7 +54,7 @@ public class House {
     public House() {
     }
 
-    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, Date created_on, User user) {
+    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, User user) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -63,11 +62,10 @@ public class House {
         this.status = status;
         this.availability_start = availability_start;
         this.availability_end = availability_end;
-        this.created_on = created_on;
         this.user = user;
     }
 
-    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, Date created_on) {
+    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -75,10 +73,9 @@ public class House {
         this.status = status;
         this.availability_start = availability_start;
         this.availability_end = availability_end;
-        this.created_on = created_on;
     }
 
-    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, Date created_on, User user, List<Images> images, List<Services> services, List<Constraints> constraints) {
+    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, User user, List<Images> images, List<Services> services, List<Constraints> constraints) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -86,7 +83,6 @@ public class House {
         this.status = status;
         this.availability_start = availability_start;
         this.availability_end = availability_end;
-        this.created_on = created_on;
         this.user = user;
         this.images = images;
         this.services = services;
@@ -157,14 +153,7 @@ public class House {
         this.availability_end = availability_end;
     }
 
-    public Date getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(Date created_on) {
-        this.created_on = created_on;
-    }
-
+    
     public User getUser() {
         return user;
     }

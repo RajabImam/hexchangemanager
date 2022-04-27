@@ -18,12 +18,11 @@ import javax.persistence.ManyToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Images {
+public class Images extends Auditable<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String image;
-    private Date created_on;
     
     @ManyToOne
     @JoinColumn(name = "house_id")
@@ -32,9 +31,8 @@ public class Images {
     public Images() {
     }
 
-    public Images(String image, Date created_on, House house) {
+    public Images(String image, House house) {
         this.image = image;
-        this.created_on = created_on;
         this.house = house;
     }
 
@@ -52,14 +50,6 @@ public class Images {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Date getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(Date created_on) {
-        this.created_on = created_on;
     }
 
     public House getHouse() {

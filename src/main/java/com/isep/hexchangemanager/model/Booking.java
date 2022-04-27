@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Booking {
+public class Booking extends Auditable<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
