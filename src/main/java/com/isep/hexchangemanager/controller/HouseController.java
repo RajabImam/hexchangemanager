@@ -28,25 +28,20 @@ public class HouseController {
     @Autowired
     private UserService userService;
     
-    @GetMapping("/addHouse")
-    public String createHouseForm(String email, Model model, HttpSession session){
-        session.setAttribute("email", email);
-        model.addAttribute("house", new House());
-        return "house_form";
-    }
-    
     @PostMapping("/addHouse")
     public String createHouse(House house, HttpSession session){
        
         String email = (String) session.getAttribute("email");
         houseService.addHouse(house, userService.findByEmail(email));
-        return "redirect:/users";
+        return "redirect:/dashboard/add_house";
     }
     
-    @GetMapping("/houses")
-    public String houseList(Model model){
-        
-        model.addAttribute("house", houseService.getHouses());
-        return "house_list";
+    @GetMapping("/viewHouse")
+    public String houseList(Model model, Principal principal){
+        String email = principal.getName();
+        User user = userService.findByEmail(email);
+        model.addAttribute("house", houseService.findUserHouse(user));
+        //model.addAttribute("house", houseService.findById(1L));
+        return "dashboard/add_house";
     }
 }

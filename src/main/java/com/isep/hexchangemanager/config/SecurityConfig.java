@@ -6,7 +6,6 @@
 package com.isep.hexchangemanager.config;
 
 import com.isep.hexchangemanager.service.UserService;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-    @Autowired
-    private DataSource dataSource; 
-    
+       
     @Autowired
     private UserService userService;
 
@@ -61,14 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         
-        http.authorizeRequests().antMatchers("/signup","/","/about","/contact","/tesimonial","/login","/css/**","/js/**")
+        http.authorizeRequests().antMatchers("/signup","/","/about","/contact","/faqs","/discovery","/login","/css/**","/images/**","/js/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/profile")
+                .defaultSuccessUrl("/dashboard/index")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");

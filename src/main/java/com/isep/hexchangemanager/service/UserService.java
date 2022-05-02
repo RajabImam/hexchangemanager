@@ -9,16 +9,10 @@ import com.isep.hexchangemanager.model.Role;
 import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.model.UserPrincipal;
 import com.isep.hexchangemanager.repository.UserRepository;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -72,6 +66,11 @@ public class UserService implements UserDetailsService{
     /*Return all users*/
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+    
+    //delete user by id 
+    public void delete(Long id){
+        userRepository.deleteById(id);
     }
 
 /*    @Override

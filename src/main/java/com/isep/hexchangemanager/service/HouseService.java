@@ -38,12 +38,12 @@ public class HouseService {
         return houseRepository.findAll();
     }
     
-      //find booking by id
+      //find house by id
     public Optional<House> findById(Long id){
         return houseRepository.findById(id);
     }
     
-    //delete booking by id 
+    //delete house by id 
     public void delete(Long id){
         houseRepository.deleteById(id);
     }

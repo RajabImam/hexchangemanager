@@ -14,48 +14,27 @@ and open the template in the editor.
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Home Exchange Manager</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Bookings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/houses">House</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/signup">Create Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                </ul>
-                <form method="post" th:action="@{/logout}" class="form-inline">
-                    <input class="form-control" type="hidden" />
-                    <button class="btn btn-secondary" type="submit">Logout</button>
-                </form>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">HEM</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
                 
-            </div>
-        </nav>
-        <div class="container">
+      </div>
+    </div>
+  </nav>
+</header>
+    
+        <div class="container d-flex align-items-center justify-content-center">
             <!-- Content here -->
-            <div class="row pt-3">
-                <div class="col-md-6 col-md-offset-3">
+            
+                <div class="col-6 pt-5">
                     
-                        <h1>Create Account</h1>
+                    <center><h1>Create Account</h1></center>  
+                        <hr/>
                         <div class="alert alert-info" th:if="${exist}">
                             <p>User already exist</p>
                         </div>
@@ -80,13 +59,26 @@ and open the template in the editor.
                                 <input type="password" class="form-control" id="password" th:field="*{password}" required="required" autofocus="autofocus" />
                                 <!--<div class="text text-danger" th:if="${#field.hasErrors('password'}" th:errors="*{password}"></div>-->
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Create Account</button>
-                            <span>Already have an account? <a href="/" th:href="@{/login}">Login</a></span>
+                             <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword"  required="required" autofocus="autofocus" />
+                                <!--<div class="text text-danger" th:if="${#field.hasErrors('password'}" th:errors="*{password}"></div>-->
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="signup" class="form-control btn btn-primary" value="Create Account">
+                            </div>
                         </form>
-                    
+                        <center>
+                    <h5>OR</h5>
+                    <hr/>
+                <a href="https://facebook.com"> Facebook </a>
+                <br/>
+                <a href="https://google.com"> Google </a>
+                </center>
+                        <div class="form-group">
+                            <center><span>Already have an account? <a href="/" th:href="@{/login}">Login</a></span></center>
+                        </div>
                 </div>
-            </div>
         </div>
     </body>
 </html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+            />
+        <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <title>Home Exchange Manager</title>
+    </head>
+    <body>
+        <!-- top navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebar"
+                    aria-controls="offcanvasExample"
+                    >
+                    <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+                </button>
+                <a
+                    class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold"
+                    href="#"
+                    >Home Exchange Manager</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#topNavBar"
+                    aria-controls="topNavBar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="topNavBar">
+                    <form class="d-flex ms-auto my-3 my-lg-0">
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                type="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                                />
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <span class="text-white" th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle ms-2"
+                                href="#"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                >
+                                <i class="bi bi-person-fill"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="/user_profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/user_profile">Account Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Messages</a></li>
+                                <li>
+                                    <form method="post" th:action="@{/logout}" class="form-inline">
+                                        <input class="form-control" type="hidden" />
+                                        <button class="dropdown-item" type="submit">Logout</button>
+                                    </form>
+
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- top navigation bar -->
+        <!-- offcanvas -->
+        <div
+            class="offcanvas offcanvas-start sidebar-nav bg-dark"
+            tabindex="-1"
+            id="sidebar"
+            >
+            <div class="offcanvas-body p-0">
+                <nav class="navbar-dark">
+                    <ul class="navbar-nav">
+
+                        <li>
+                            <a href="#" class="nav-link px-3 active">
+                                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <!--House Management Module-->
+                        <li>
+                            <a
+                                class="nav-link px-3 sidebar-link"
+                                data-bs-toggle="collapse"
+                                href="#house"
+                                >
+                                <span class="me-2"><i class="bi bi-layout-split"></i></span>
+                                <span>House</span>
+                                <span class="ms-auto">
+                                    <span class="right-icon">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                                </span>
+                            </a>
+                            <div class="collapse" id="house">
+                                <ul class="navbar-nav ps-3">
+                                    <li>
+                                        <a href="/add_house" class="nav-link px-3">
+                                            <span class="me-2"
+                                                  ><i class="bi bi-speedometer2"></i
+                                                ></span>
+                                            <span>Add House</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-link px-3">
+                                            <span class="me-2"
+                                                  ><i class="bi bi-speedometer2"></i
+                                                ></span>
+                                            <span>House Details</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--Booking Module-->
+                        <li>
+                            <a
+                                class="nav-link px-3 sidebar-link"
+                                data-bs-toggle="collapse"
+                                href="#booking"
+                                >
+                                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                                <span>Bookings</span>
+                                <span class="ms-auto">
+                                    <span class="right-icon">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                                </span>
+                            </a>
+                            <div class="collapse" id="booking">
+                                <ul class="navbar-nav ps-3">
+                                    <li>
+                                        <a href="#" class="nav-link px-3">
+                                            <span class="me-2"
+                                                  ><i class="bi bi-speedometer2"></i
+                                                ></span>
+                                            <span>Booking Info</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-link px-3">
+                                            <span class="me-2"
+                                                  ><i class="bi bi-speedometer2"></i
+                                                ></span>
+                                            <span>Booking History</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/user_profile" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                                <span>Account</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/users" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                                <span>All Users</span>
+                            </a>
+                        </li>
+                        <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
+                        <li>
+                            <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                                Dedicated System
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-graph-up"></i></span>
+                                <span>Messaging System</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-table"></i></span>
+                                <span>Rating System</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- offcanvas -->
+        <main class="mt-5 pt-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Add House</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <img src="../images/property-1.jpg" alt="" width="500" height="350" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <form th:action="@{/addHouse}" method="post" th:object="${house}">
+                            <div class="form-group">
+                                <label for="name">House Name</label>
+                                <input type="text" class="form-control" id="name" th:field="*{name}" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label for="location">House Location/Address</label>
+                                <input type="text" class="form-control" id="location" th:field="*{location}" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label for="type">Type of House</label>
+                                <input type="text" class="form-control" id="type" th:field="*{type}" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label for="description">House Description</label>
+                                <textarea class="form-control" id="description" th:field="*{description}" required="required" autofocus="autofocus" ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="availability_start">House Availability Start Date</label>
+                                <input type="date" class="form-control" id="availability_start" th:field="*{availability_start}" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label for="availability_end">House Availability End Date</label>
+                                <input type="date" class="form-control" id="availability_end" th:field="*{availability_end}" required="required" autofocus="autofocus" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create House</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <span><i class="bi bi-table me-2"></i></span>Add House Images - Constraints - Services
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table
+                                        id="example"
+                                        class="table table-striped data-table"
+                                        style="width: 100%"
+                                        >
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Location</th>
+                                                <th>Start date</th>
+                                                <th>End Date</th>
+                                                <th>Add Images</th>
+                                                <th>Add Services</th>
+                                                <th>Add Constraints</th>
+                                                <th>Update Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="houses:${house}">
+                                                <td th:text="${houses.name}"></td>
+                                                <td th:text="${houses.location}"></td>
+                                                <td th:text="${houses.availability_start}"></td>
+                                                <td th:text="${houses.availability_end}"></td>
+                                                <td><a href="">add</a></td>
+                                                <td><a href="">add</a></td>
+                                                <td><a href="">add</a></td>
+                                                <td><a href="">update status</a></td>
+                                            </tr>
+
+                                            </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+        <script src="../js/jquery-3.5.1.js"></script>
+        <script src="../js/jquery.dataTables.min.js"></script>
+        <script src="../js/dataTables.bootstrap5.min.js"></script>
+        <script src="../js/script.js"></script>
+    </body>
+</html>

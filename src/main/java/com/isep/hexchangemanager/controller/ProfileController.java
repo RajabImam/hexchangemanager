@@ -24,11 +24,17 @@ public class ProfileController {
     private UserService userService;
     
     
-    @GetMapping("/profile")
-    public String userProfile(Model model, Principal principal){
+    @GetMapping("/dashboard/index")
+    public String login(Model model, Principal principal){
         
         String email = principal.getName();
-        model.addAttribute("profile", userService.findByEmail(email));
-        return "profile";
+        model.addAttribute("login", userService.findByEmail(email));
+        return "/dashboard/index";
     }
+   
+//    @GetMapping("/user_profile")
+//    public String profile(Model model){
+//        model.addAttribute("profile", new User());
+//        return "/user_profile";
+//    }
 }
