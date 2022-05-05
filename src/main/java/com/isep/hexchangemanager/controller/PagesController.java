@@ -49,6 +49,11 @@ public class PagesController {
         return "/contact";
     }
     
+    @GetMapping("/dashboard")
+    public String dashboardPage(){
+        return "/dashboard/index";
+    }
+    
    
     
     @GetMapping("/add_house")
@@ -58,10 +63,11 @@ public class PagesController {
         return "/dashboard/add_house";
     }
     
-    @GetMapping("/user_profile")
-    public String profileForm(String email, Model model, HttpSession session){
-        session.setAttribute("email", email);
-        model.addAttribute("profile", new User());
-        return "/dashboard/user_profile";
-    }
+//    @GetMapping("/user_profile")
+//    public String profileForm(String email, Model model, HttpSession session){
+//        session.setAttribute("email", email);
+//        model.addAttribute("profile", new User());
+//        return "/dashboard/user_profile";
+//    }
+    
 }

@@ -96,7 +96,7 @@
                     <ul class="navbar-nav">
 
                         <li>
-                            <a href="#" class="nav-link px-3 active">
+                            <a href="/dashboard" class="nav-link px-3 active">
                                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                                 <span>Dashboard</span>
                             </a>
@@ -218,7 +218,11 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="card bg-primary text-white h-100">
-                            <div class="card-body py-5">Primary Card</div>
+                            <div class="card-body py-5">
+                                <span th:text="${#dates.format(#dates.createNow(), 'hh:mm a')}"></span>
+                                <span th:text="${#dates.format(#dates.createNow(), 'dd MMM YYYY')}"></span>
+                                
+                            </div>
                             <div class="card-footer d-flex">
                                 View Details
                                 <span class="ms-auto">

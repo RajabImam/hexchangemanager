@@ -77,33 +77,6 @@ public class UserController {
         return userService.findById(id);
     }
     
-    @RequestMapping(value = "/users/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(User user, RedirectAttributes redirectAttributes, 
-            @AuthenticationPrincipal UserPrincipal loginUser, 
-            @RequestParam("image") MultipartFile multipartFile) throws IOException{
-        if (!multipartFile.isEmpty()) {
-            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            user.setProfile_img(fileName);
-            
-            userService.createUser(user);
-            String profileFolder = "images/profiles/" + user.getEmail();
-            Path path = Paths.get(profileFolder);
-            
-            if (!Files.exists(path)) {
-                Files.createDirectories(path);
-            }
-            try {
-                InputStream inputStream = multipartFile.getInputStream();
-                Path filePath = path.resolve(fileName);
-                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                throw new IOException("Can't save upload image " + fileName);
-            }
-            
-        }
-        userService.createUser(user);
-        return "redirect:/users";
-    }
     
     @RequestMapping(value = "/users/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Long id){
