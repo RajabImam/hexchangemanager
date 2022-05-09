@@ -25,14 +25,14 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 public abstract class Auditable<U> {
     @CreatedBy
     protected U createdBy;
-    
+
     @CreatedDate
     @Temporal(TIMESTAMP)
     protected Date createdDate;
-    
+
     @LastModifiedBy
     protected U lastModifiedBy;
-    
+
     @LastModifiedDate
     @Temporal(TIMESTAMP)
     protected Date lastModifiedDate;
@@ -68,6 +68,5 @@ public abstract class Auditable<U> {
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
-    
-    
+
 }

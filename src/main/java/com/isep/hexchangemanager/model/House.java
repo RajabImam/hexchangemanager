@@ -22,7 +22,7 @@ import javax.persistence.OneToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class House extends Auditable<String>{
+public class House extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,23 +38,24 @@ public class House extends Auditable<String>{
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    
+
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Images> images;
-    
+
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Services> services;
-    
+
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Constraints> constraints;
-    
+
     @OneToOne(mappedBy = "house", cascade = CascadeType.ALL)
     private Booking booking;
 
     public House() {
     }
 
-    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, User user) {
+    public House(String name, String location, String type, String description, Integer status, Date availability_start,
+            Date availability_end, User user) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -65,7 +66,8 @@ public class House extends Auditable<String>{
         this.user = user;
     }
 
-    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end) {
+    public House(String name, String location, String type, String description, Integer status, Date availability_start,
+            Date availability_end) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -75,7 +77,9 @@ public class House extends Auditable<String>{
         this.availability_end = availability_end;
     }
 
-    public House(String name, String location, String type, String description, Integer status, Date availability_start, Date availability_end, User user, List<Images> images, List<Services> services, List<Constraints> constraints) {
+    public House(String name, String location, String type, String description, Integer status, Date availability_start,
+            Date availability_end, User user, List<Images> images, List<Services> services,
+            List<Constraints> constraints) {
         this.name = name;
         this.location = location;
         this.type = type;
@@ -88,7 +92,7 @@ public class House extends Auditable<String>{
         this.services = services;
         this.constraints = constraints;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -153,7 +157,6 @@ public class House extends Auditable<String>{
         this.availability_end = availability_end;
     }
 
-    
     public User getUser() {
         return user;
     }
@@ -185,7 +188,5 @@ public class House extends Auditable<String>{
     public void setConstraints(List<Constraints> constraints) {
         this.constraints = constraints;
     }
-    
-    
 
 }

@@ -20,25 +20,25 @@ import org.springframework.stereotype.Service;
 public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
-    
-    //Return all bookings
-    public List<Booking> getBookings(){
+
+    // Return all bookings
+    public List<Booking> getBookings() {
         return bookingRepository.findAll();
     }
-    
-    //Add new booking
-    public void save(Booking booking){
+
+    // Add new booking
+    public void save(Booking booking) {
         bookingRepository.save(booking);
     }
-    
-    //find booking by id
-    public Optional<Booking> findById(int id){
+
+    // find booking by id
+    public Optional<Booking> findById(int id) {
         return bookingRepository.findById(id);
     }
-    
-    //delete booking by id 
-    public void delete(Integer id){
+
+    // delete booking by id
+    public void delete(Integer id) {
         bookingRepository.deleteById(id);
     }
-    
+
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Home Exchange Manager</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav layout:replace="~{layout/app_layout1/header::header}"></nav>
+    <!-- Header -->
+
+    <!-- Menu -->
+    <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
+        <div class="offcanvas-body p-0">
+            <nav class="navbar-dark">
+                <div layout:replace="~{layout/app_layout1/menu::menu}"></div>
+            </nav>
+        </div>
+    </div>
+    <!-- Menu -->
+
+    <!-- Content -->
+    <main class="mt-5 pt-3">
+        <div class="container-fluid">
+            <div layout:fragment="content"></div>
+        </div>
+    </main>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap5.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

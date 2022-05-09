@@ -46,12 +46,12 @@ public class ProfileController {
 //        model.addAttribute("user", userService.findByEmail(email));
 //        return "/dashboard/index";
 //    }
-    @GetMapping("/dashboard/index")
+    @GetMapping("/dashboard")
     public String login(@AuthenticationPrincipal UserPrincipal loginUser, Model model){
         String email = loginUser.getUsername();
         User user = userService.findByEmail(email);
         model.addAttribute("user", user);
-        return "/dashboard/index";
+        return "/dashboard/dashboard";
     }
     
     @GetMapping
@@ -77,7 +77,7 @@ public class ProfileController {
         String email = loginUser.getUsername();
         User user = userService.findByEmail(email);
         model.addAttribute("user", user);
-        return "/dashboard/user_profile";
+        return "/user/user_profile";
     }
     
     @PostMapping("/user_profile/update")

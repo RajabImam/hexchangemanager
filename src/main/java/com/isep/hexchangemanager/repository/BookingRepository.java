@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author RAJAB IMAM
  */
 @Repository
-public interface BookingRepository extends JpaRepository<Booking, Integer>{
-    
+public interface BookingRepository extends JpaRepository<Booking, Integer> {
+
 }

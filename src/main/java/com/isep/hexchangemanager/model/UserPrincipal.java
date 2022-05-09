@@ -15,14 +15,14 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * @author RAJAB IMAM
  */
-public class UserPrincipal implements UserDetails{
-    
+public class UserPrincipal implements UserDetails {
+
     private User user;
 
     public UserPrincipal(User user) {
         this.user = user;
     }
- 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority("USER"));
@@ -57,16 +57,16 @@ public class UserPrincipal implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
-    
-    public String getFullName(){
+
+    public String getFullName() {
         return this.user.getFirstname() + " " + this.user.getLastname();
     }
-    
-    public void setFirstName(String firstName){
+
+    public void setFirstName(String firstName) {
         this.user.setFirstname(firstName);
     }
-    
-    public void setLastName(String lastName){
+
+    public void setLastName(String lastName) {
         this.user.setLastname(lastName);
     }
 }

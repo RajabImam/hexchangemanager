@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+
+<head>
+</head>
+
+<body>
+        <ul layout:fragment="menu" class="navbar-nav">
+            <li>
+                <a href="/dashboard" class="nav-link px-3 active">
+                    <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <!--House Management Module-->
+            <li>
+                <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#house">
+                    <span class="me-2"><i class="bi bi-layout-split"></i></span>
+                    <span>House</span>
+                    <span class="ms-auto">
+                        <span class="right-icon">
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
+                    </span>
+                </a>
+                <div class="collapse" id="house">
+                    <ul class="navbar-nav ps-3">
+                        <li>
+                            <a href="/add_house" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                                <span>Add House</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                                <span>House Details</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Booking Module-->
+            <li>
+                <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#booking">
+                    <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                    <span>Bookings</span>
+                    <span class="ms-auto">
+                        <span class="right-icon">
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
+                    </span>
+                </a>
+                <div class="collapse" id="booking">
+                    <ul class="navbar-nav ps-3">
+                        <li>
+                            <a href="#" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                                <span>Booking Info</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                                <span>Booking History</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="/user_profile" class="nav-link px-3">
+                    <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                    <span>Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="/users" class="nav-link px-3">
+                    <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                    <span>All Users</span>
+                </a>
+            </li>
+            <li class="my-4">
+                <hr class="dropdown-divider bg-light" />
+            </li>
+            <li>
+                <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                    Dedicated System
+                </div>
+            </li>
+            <li>
+                <a href="#" class="nav-link px-3">
+                    <span class="me-2"><i class="bi bi-graph-up"></i></span>
+                    <span>Messaging System</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link px-3">
+                    <span class="me-2"><i class="bi bi-table"></i></span>
+                    <span>Rating System</span>
+                </a>
+            </li>
+        </ul>
+</body>
+
+</html>

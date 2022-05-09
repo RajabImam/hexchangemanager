@@ -24,43 +24,41 @@ public class PagesController {
         return "index";
     }
     
-    @GetMapping("/login")
-    public String showLoginPage(){
-        return "/login";
-    }
-    
     @GetMapping("/about")
     public String aboutPage(){
-        return "/about";
+        return "/hm/about";
     }
     
     @GetMapping("/discovery")
     public String discoveryPage(){
-        return "/discovery";
+        return "/hm/discovery";
     }
     
     @GetMapping("/faqs")
     public String faqsPage(){
-        return "/faqs";
+        return "/hm/faqs";
     }
     
     @GetMapping("/contact")
     public String contactPage(){
-        return "/contact";
+        return "/hm/contact";
+    }
+
+    @GetMapping("/login")
+    public String showLoginPage(){
+        return "/account/login";
     }
     
-    @GetMapping("/dashboard")
+    /*@GetMapping("/dashboard")
     public String dashboardPage(){
-        return "/dashboard/index";
-    }
-    
-   
+        return "/dashboard/dashboard";
+    }*/
     
     @GetMapping("/add_house")
     public String createHouseForm(String email, Model model, HttpSession session){
         session.setAttribute("email", email);
         model.addAttribute("house", new House());
-        return "/dashboard/add_house";
+        return "/house/add_house";
     }
     
 //    @GetMapping("/user_profile")

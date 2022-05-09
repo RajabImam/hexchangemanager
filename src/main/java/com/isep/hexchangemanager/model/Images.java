@@ -18,12 +18,12 @@ import javax.persistence.ManyToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Images extends Auditable<String>{
+public class Images extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String image;
-    
+
     @ManyToOne
     @JoinColumn(name = "house_id")
     private House house;
@@ -59,7 +59,5 @@ public class Images extends Auditable<String>{
     public void setHouse(House house) {
         this.house = house;
     }
-    
-    
-    
+
 }

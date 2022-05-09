@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Booking extends Auditable<String>{
+public class Booking extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,11 +30,11 @@ public class Booking extends Auditable<String>{
     private Integer status;
     private Integer owner_rating;
     private Integer house_rating;
-    
+
     @OneToOne
     @JoinColumn(name = "house_id")
     private House house;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -42,7 +42,8 @@ public class Booking extends Auditable<String>{
     public Booking() {
     }
 
-    public Booking(Date start_date, Date expiry_date, Date booking_date, Integer status, Integer owner_rating, Integer house_rating, House house, User user) {
+    public Booking(Date start_date, Date expiry_date, Date booking_date, Integer status, Integer owner_rating,
+            Integer house_rating, House house, User user) {
         this.start_date = start_date;
         this.expiry_date = expiry_date;
         this.booking_date = booking_date;
@@ -53,7 +54,8 @@ public class Booking extends Auditable<String>{
         this.user = user;
     }
 
-    public Booking(Date start_date, Date expiry_date, Date booking_date, Integer status, Integer owner_rating, Integer house_rating) {
+    public Booking(Date start_date, Date expiry_date, Date booking_date, Integer status, Integer owner_rating,
+            Integer house_rating) {
         this.start_date = start_date;
         this.expiry_date = expiry_date;
         this.booking_date = booking_date;
@@ -133,6 +135,5 @@ public class Booking extends Auditable<String>{
     public void setUser(User user) {
         this.user = user;
     }
-    
-    
+
 }

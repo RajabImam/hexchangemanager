@@ -17,12 +17,12 @@ import javax.persistence.ManyToOne;
  * @author RAJAB IMAM
  */
 @Entity
-public class Services extends Auditable<String>{
+public class Services extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    
+
     @ManyToOne
     @JoinColumn(name = "house_id")
     private House house;
@@ -58,7 +58,5 @@ public class Services extends Auditable<String>{
     public void setHouse(House house) {
         this.house = house;
     }
-    
-    
-    
+
 }

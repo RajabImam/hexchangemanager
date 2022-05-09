@@ -20,15 +20,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-
-
 /**
  *
  * @author RAJAB IMAM
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User extends Auditable<String>{
+public class User extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,19 +39,15 @@ public class User extends Auditable<String>{
     private String email;
     private String password;
     private String profile_img;
-    
-      @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-      )
-     
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+
     private List<Role> roles;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<House> houses;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
@@ -64,10 +58,9 @@ public class User extends Auditable<String>{
         this.email = email;
         this.password = password;
     }
-    
-    
 
-    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img) {
+    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email,
+            String password, String profile_img) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
@@ -79,7 +72,8 @@ public class User extends Auditable<String>{
         this.profile_img = profile_img;
     }
 
-    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email, String password, String profile_img, List<Role> roles, List<House> houses, List<Booking> bookings) {
+    public User(String firstname, String lastname, String gender, Date dob, String phone, String address, String email,
+            String password, String profile_img, List<Role> roles, List<House> houses, List<Booking> bookings) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
@@ -93,8 +87,6 @@ public class User extends Auditable<String>{
         this.houses = houses;
         this.bookings = bookings;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -176,7 +168,6 @@ public class User extends Auditable<String>{
         this.profile_img = profile_img;
     }
 
-   
     public List<Role> getRoles() {
         return roles;
     }
@@ -203,9 +194,10 @@ public class User extends Auditable<String>{
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password=" + password + ", profile_img=" + profile_img + ", roles=" + roles + ", houses=" + houses + ", bookings=" + bookings + '}';
+        return "User{" + "id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender
+                + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password="
+                + password + ", profile_img=" + profile_img + ", roles=" + roles + ", houses=" + houses + ", bookings="
+                + bookings + '}';
     }
-    
-    
-    
+
 }

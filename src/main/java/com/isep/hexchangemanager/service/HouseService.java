@@ -23,29 +23,29 @@ import org.springframework.stereotype.Service;
 public class HouseService {
     @Autowired
     private HouseRepository houseRepository;
-    
-    public void addHouse(House house, User user){
+
+    public void addHouse(House house, User user) {
         house.setUser(user);
         house.setStatus(0);
         houseRepository.save(house);
     }
-    
-    public List<House> findUserHouse(User user){
+
+    public List<House> findUserHouse(User user) {
         return houseRepository.findByUser(user);
     }
-    
-    public List<House> getHouses(){
+
+    public List<House> getHouses() {
         return houseRepository.findAll();
     }
-    
-      //find house by id
-    public Optional<House> findById(Long id){
+
+    // find house by id
+    public Optional<House> findById(Long id) {
         return houseRepository.findById(id);
     }
-    
-    //delete house by id 
-    public void delete(Long id){
+
+    // delete house by id
+    public void delete(Long id) {
         houseRepository.deleteById(id);
     }
-    
+
 }

@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author RAJAB IMAM
  */
 @Repository
-public interface ConstraintsRepository extends JpaRepository<Constraints, Integer>{
-    
+public interface ConstraintsRepository extends JpaRepository<Constraints, Integer> {
+
 }
