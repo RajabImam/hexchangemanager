@@ -5,6 +5,8 @@
  */
 package com.isep.hexchangemanager.config;
 
+import com.isep.hexchangemanager.oauth.CustomOAuth2UserService;
+import com.isep.hexchangemanager.oauth.OAuth2LoginSuccessHandler;
 import com.isep.hexchangemanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
        
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+    
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -58,17 +66,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         
-        http.authorizeRequests().antMatchers("/","/about","/discovery","/faqs","/contact","/signup","/login","/css/**","/images/**","/js/**")
+        http.authorizeRequests().antMatchers("/","/about","/discovery","/faqs","/contact","/signup","/login","/oauth2/**","/css/**","/images/**","/js/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/dashboard")
+                    .loginPage("/login")
+                    //.usernameParameter("email")
+                    .permitAll()
+                    .defaultSuccessUrl("/dashboard")
+                .and()
+                .oauth2Login()
+                    .loginPage("/login")
+                    .permitAll()
+                    //.defaultSuccessUrl("/dashboard", true)
+                    .userInfoEndpoint().userService(customOAuth2UserService)
+                .and()
+                .successHandler(oAuth2LoginSuccessHandler)
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
     }
+    
     
 }

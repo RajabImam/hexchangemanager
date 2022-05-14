@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +41,9 @@ public class User extends Auditable<String> {
     private String email;
     private String password;
     private String profile_img;
+    
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -191,6 +196,16 @@ public class User extends Auditable<String> {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+    
+    
 
     @Override
     public String toString() {

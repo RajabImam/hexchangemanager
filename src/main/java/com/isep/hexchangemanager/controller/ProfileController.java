@@ -7,6 +7,7 @@ package com.isep.hexchangemanager.controller;
 
 import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.model.UserPrincipal;
+import com.isep.hexchangemanager.oauth.CustomOAuth2User;
 import com.isep.hexchangemanager.service.UserService;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +50,14 @@ public class ProfileController {
     @GetMapping("/dashboard")
     public String login(@AuthenticationPrincipal UserPrincipal loginUser, Model model){
         String email = loginUser.getUsername();
+        User user = userService.findByEmail(email);
+        model.addAttribute("user", user);
+        return "/dashboard/dashboard";
+    }
+    
+    @GetMapping("/oauth2/authorization/google")
+    public String oAuthLogin(@AuthenticationPrincipal CustomOAuth2User oAuthUser, Model model){
+        String email = oAuthUser.getEmail();
         User user = userService.findByEmail(email);
         model.addAttribute("user", user);
         return "/dashboard/dashboard";

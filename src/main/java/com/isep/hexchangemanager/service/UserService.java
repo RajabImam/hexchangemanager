@@ -5,11 +5,13 @@
  */
 package com.isep.hexchangemanager.service;
 
+import com.isep.hexchangemanager.model.Provider;
 import com.isep.hexchangemanager.model.Role;
 import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.model.UserPrincipal;
 import com.isep.hexchangemanager.repository.UserRepository;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +106,24 @@ public class UserService implements UserDetailsService {
      * SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
      * }
      */
+
+    /* Login with OAuth for new account*/
+   public void createOAuthUser(String email, String name, Provider provider) {
+        User user = new User();
+        user.setEmail(email);
+        user.setFirstname(name);
+        user.setCreatedDate(new Date());
+        user.setProvider(provider);
+        
+        userRepository.save(user);
+    }
+    
+    /* Login with OAuth for existing account*/
+    public void updateOAuthUser(User user, String name, Provider provider) {
+        user.setFirstname(name);
+        user.setProvider(provider);
+        
+        userRepository.save(user);
+    }
 
 }
