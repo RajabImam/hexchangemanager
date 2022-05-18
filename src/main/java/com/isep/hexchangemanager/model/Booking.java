@@ -5,8 +5,8 @@
  */
 package com.isep.hexchangemanager.model;
 
+import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +26,7 @@ public class Booking extends Auditable<String> {
     private Integer id;
     private Date start_date;
     private Date expiry_date;
-    private Date booking_date;
+    private Time estimated_check_in;
     private Integer status;
     private Integer owner_rating;
     private Integer house_rating;
@@ -42,11 +42,11 @@ public class Booking extends Auditable<String> {
     public Booking() {
     }
 
-    public Booking(Date start_date, Date expiry_date, Date booking_date, Integer status, Integer owner_rating,
+    public Booking(Date start_date, Date expiry_date, Time estimated_check_in, Integer status, Integer owner_rating,
             Integer house_rating, House house, User user) {
         this.start_date = start_date;
         this.expiry_date = expiry_date;
-        this.booking_date = booking_date;
+        this.estimated_check_in = estimated_check_in;
         this.status = status;
         this.owner_rating = owner_rating;
         this.house_rating = house_rating;
@@ -54,11 +54,11 @@ public class Booking extends Auditable<String> {
         this.user = user;
     }
 
-    public Booking(Date start_date, Date expiry_date, Date booking_date, Integer status, Integer owner_rating,
+    public Booking(Date start_date, Date expiry_date, Time estimated_check_in, Integer status, Integer owner_rating,
             Integer house_rating) {
         this.start_date = start_date;
         this.expiry_date = expiry_date;
-        this.booking_date = booking_date;
+        this.estimated_check_in = estimated_check_in;
         this.status = status;
         this.owner_rating = owner_rating;
         this.house_rating = house_rating;
@@ -88,13 +88,15 @@ public class Booking extends Auditable<String> {
         this.expiry_date = expiry_date;
     }
 
-    public Date getBooking_date() {
-        return booking_date;
+    public Time getEstimated_check_in() {
+        return estimated_check_in;
     }
 
-    public void setBooking_date(Date booking_date) {
-        this.booking_date = booking_date;
+    public void setEstimated_check_in(Time estimated_check_in) {
+        this.estimated_check_in = estimated_check_in;
     }
+
+  
 
     public Integer getStatus() {
         return status;

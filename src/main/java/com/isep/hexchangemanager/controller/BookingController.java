@@ -6,11 +6,15 @@
 package com.isep.hexchangemanager.controller;
 
 import com.isep.hexchangemanager.model.Booking;
+import com.isep.hexchangemanager.model.House;
+import com.isep.hexchangemanager.model.User;
+import com.isep.hexchangemanager.model.UserPrincipal;
 import com.isep.hexchangemanager.service.BookingService;
 import com.isep.hexchangemanager.service.HouseService;
 import com.isep.hexchangemanager.service.UserService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,19 +37,22 @@ public class BookingController {
     private HouseService houseService;
     
     
-    @GetMapping("/bookings")
+    @GetMapping("/viewBooking")
     public String getBookingView(Model model){
         model.addAttribute("user", userService.getUsers());
         model.addAttribute("house", houseService.getHouses());
         model.addAttribute("bookings", bookingService.getBookings());
         
-        return "booking";
+        return "redirect:/dashboard/booking";
     }
     
-    @PostMapping("/bookings/addNew")
-    public String addNew(Booking booking){
-        bookingService.save(booking);
-        return "redirect:/bookings";
+    @PostMapping("/addNewBooking")
+    public String addNew(Booking booking, @AuthenticationPrincipal UserPrincipal loginUser, User user, House house){
+        String email = loginUser.getUsername();
+        user = userService.findByEmail(email);
+        house = (House) houseService.findUserHouse(user);
+        bookingService.addBooking(booking, user, house);
+        return "redirect:/dashboard/booking";
     }
     
     @RequestMapping("bookings/findById")
@@ -57,13 +64,13 @@ public class BookingController {
     @RequestMapping(value = "/bookings/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(Booking booking){
         bookingService.save(booking);
-        return "redirect:/bookings";
+        return "redirect:/dashboard/booking";
     }
     
     @RequestMapping(value = "/bookings/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Integer id){
         bookingService.delete(id);
-        return "redirect:/bookings";
+        return "redirect:/dashboard/booking";
     }
     
 }

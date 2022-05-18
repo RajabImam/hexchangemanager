@@ -5,6 +5,7 @@
  */
 package com.isep.hexchangemanager.controller;
 
+import com.isep.hexchangemanager.model.Booking;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.model.User;
 import javax.servlet.http.HttpSession;
@@ -59,6 +60,13 @@ public class PagesController {
         session.setAttribute("email", email);
         model.addAttribute("house", new House());
         return "/house/add_house";
+    }
+    
+     @GetMapping("/booking")
+    public String createBookingForm(String email, Model model, HttpSession session){
+        session.setAttribute("email", email);
+        model.addAttribute("booking", new Booking());
+        return "/booking/booking";
     }
     
 //    @GetMapping("/user_profile")

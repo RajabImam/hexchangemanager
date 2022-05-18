@@ -6,6 +6,8 @@
 package com.isep.hexchangemanager.service;
 
 import com.isep.hexchangemanager.model.Booking;
+import com.isep.hexchangemanager.model.House;
+import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.repository.BookingRepository;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +30,14 @@ public class BookingService {
 
     // Add new booking
     public void save(Booking booking) {
+        bookingRepository.save(booking);
+    }
+    
+    public void addBooking(Booking booking, User user, House house){
+        
+        booking.setUser(user);
+        booking.setHouse(house);
+        booking.setStatus(1);
         bookingRepository.save(booking);
     }
 

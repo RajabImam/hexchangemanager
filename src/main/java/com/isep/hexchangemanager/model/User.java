@@ -20,7 +20,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
 
 /**
  *
@@ -171,6 +173,13 @@ public class User extends Auditable<String> {
 
     public void setProfile_img(String profile_img) {
         this.profile_img = profile_img;
+    }
+    
+    @Transient
+    public String getProfileImagePath(){
+        if(profile_img == null || id == null ) return null;
+            
+        return "/uploads/" + id + "/" + profile_img;
     }
 
     public List<Role> getRoles() {

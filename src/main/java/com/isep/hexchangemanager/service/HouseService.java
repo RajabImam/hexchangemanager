@@ -8,8 +8,6 @@ package com.isep.hexchangemanager.service;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.repository.HouseRepository;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
