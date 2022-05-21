@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/app_layout1/layout}">
+
+<head>
+    <title>User List</title>
+    <!-- Read Dedicated CSS -->
+    <link rel="stylesheet" th:href="@{/css/house/list.css}">
+</head>
+
+<body>
+<div layout:fragment ="content" >
+    <div class ="header border-bottom" >
+        <h1 class ="h2" >My Houses</h1>
+    </div>
+    <!-- Search -->
+    <div class ="mb-4" >
+        <!--<form id ="user-search-form" method ="post" th:action ="@{/house/list}"
+              class ="form-inline" th:object ="${userListForm}" >
+            <div class ="form-group" >
+                <label for ="userId" class ="mr-2" > User ID</label>
+                <input type ="text" class ="form-control" th:field ="*{userId}" />
+            </div>
+            <div class ="form-group mx-sm-3" >
+                <label for ="userName" class ="mr-2" > User Name</label>
+                <input type ="text" class ="form-control" th:field ="*{userName}" />
+            </div>
+            <button class ="btn btn-primary" type ="submit" >
+                search
+            </button>
+            <button id ="btn-search" class ="btn btn-primary ml-3" type ="button" >
+                search(REST)
+            </button>
+        </form>-->
+    </div>
+    <!-- List display -->
+    <div>
+        <table class ="table table-striped table-bordered table-hover" >
+            <thead class ="thead-light" >
+            <tr>
+                <th class ="th-width" >Id</th>
+                <th class ="th-width" >Name</th>
+                <th class ="th-width" >Location</th>
+                <th class ="th-width" >Type</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each ="house: ${houseList}" >
+                <td th:text ="${house.id}" ></td>
+                <td th:text ="${house.name}" ></td>
+                <td th:text ="${house.city}" ></td>
+                <td th:text ="${house.type}" ></td>
+                <td>
+                    <a class ="btn btn-primary" th:href ="@{'/house/detail/' + ${house.id}}">
+                        Details
+                    </a>
+                    <a class ="btn btn-primary" th:href ="@{'/house/detail/' + ${house.id}}">
+                        Add service
+                    </a>
+                    <a th:href = @{${house.id}} class ="btn btn-primary eBtn" >
+                        Add Constraint
+                    </a>
+                    <a class ="btn btn-primary" th:href ="@{'/house/detail/' + ${house.id}}">
+                        Advertise
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Modal -->
+        <div class = myForm>
+            <form th:action = @{'/constraint/add'} method="post">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Constraint</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="houseId" name = "houseId" value="" required="required" autofocus="autofocus" />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" required="required" autofocus="autofocus" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" value="save">Save </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

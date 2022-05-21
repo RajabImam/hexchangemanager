@@ -10,7 +10,7 @@ import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.model.UserPrincipal;
 import com.isep.hexchangemanager.service.BookingService;
-import com.isep.hexchangemanager.service.HouseService;
+import com.isep.hexchangemanager.service.IHouseService;
 import com.isep.hexchangemanager.service.UserService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class BookingController {
     @Autowired
     private UserService userService;
     @Autowired
-    private HouseService houseService;
+    private IHouseService houseService;
     
     
     @GetMapping("/viewBooking")

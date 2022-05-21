@@ -5,15 +5,19 @@
  */
 package com.isep.hexchangemanager.repository;
 
-import com.isep.hexchangemanager.model.Constraints;
+import com.isep.hexchangemanager.model.Constraint;
+import com.isep.hexchangemanager.model.House;
+import com.isep.hexchangemanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  *
  * @author RAJAB IMAM
  */
 @Repository
-public interface ConstraintsRepository extends JpaRepository<Constraints, Integer> {
-
+public interface ConstraintRepository extends JpaRepository<Constraint, Integer> {
+    public List<Constraint> findByHouse(House house);
 }
