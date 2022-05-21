@@ -7,12 +7,10 @@ package com.isep.hexchangemanager.controller;
 
 import com.isep.hexchangemanager.form.housemanagement.AddConstraintForm;
 import com.isep.hexchangemanager.form.housemanagement.GroupOrder;
-import com.isep.hexchangemanager.model.Constraint;
+import com.isep.hexchangemanager.model.HConstraint;
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.model.User;
-import com.isep.hexchangemanager.service.IConstraintService;
+import com.isep.hexchangemanager.service.IHConstraintService;
 import com.isep.hexchangemanager.service.IHouseService;
-import com.isep.hexchangemanager.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +32,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/constraint")
 @Slf4j
-public class ConstraintController {
+public class HConstraintController {
     @Autowired
-    private IConstraintService constraintService;
+    private IHConstraintService constraintService;
 
     @Autowired
     private IHouseService houseService;
@@ -47,7 +45,7 @@ public class ConstraintController {
     /** Display the add house screen */
     @GetMapping ("/add" )
     public String getAddHouse(Model model, @ModelAttribute AddConstraintForm form ) {
-        return "house/addhouse" ;
+        return "house/list" ;
     }
 
     /** add house process */
@@ -66,18 +64,16 @@ public class ConstraintController {
         Long houseId = form.getHouseId();
 
         //map form details to the house model
-        Constraint constraint = modelMapper.map(form, Constraint.class);
+        HConstraint constraint = modelMapper.map(form, HConstraint.class);
 
         try{
         //get house details using the houseId
-        Optional<House> result = houseService.findById(houseId);
-        House house = result.get();
+        House house = houseService.findById(houseId).get();
 
         //set the house field of the house model
         constraint.setHouse(house);
 
-
-        //try to add constraint to database
+        //add constraint to database
             constraintService.addConstraint(constraint);
             model.addAttribute("status", "Constraint added successfully");
         }
@@ -93,7 +89,7 @@ public class ConstraintController {
     @GetMapping("/list/{id}")
     public String houseList(Model model,  @PathVariable("userId" ) Long id){
         House house;
-        List<Constraint> constraintList = new ArrayList<>();
+        List<HConstraint> constraintList = new ArrayList<>();
         Optional<House> result = houseService.findById(id);
 
         if(result.isPresent()){

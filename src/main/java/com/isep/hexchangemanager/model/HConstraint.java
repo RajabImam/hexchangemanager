@@ -15,13 +15,14 @@ import javax.persistence.*;
  */
 @Entity
 @Data
-public class Constraint extends Auditable<String> {
+public class HConstraint extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "house_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
 }

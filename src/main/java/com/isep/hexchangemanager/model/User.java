@@ -5,6 +5,9 @@
  */
 package com.isep.hexchangemanager.model;
 
+import lombok.Data;
+import lombok.ToString;
+
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -216,12 +219,12 @@ public class User extends Auditable<String> {
     
     
 
-    @Override
+    /*@Override
     public String toString() {
         return "User{" + "id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender
                 + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password="
                 + password + ", profile_img=" + profile_img + ", roles=" + roles + ", houses=" + houses + ", bookings="
                 + bookings + '}';
-    }
+    }*/
 
 }

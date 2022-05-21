@@ -6,6 +6,7 @@
 package com.isep.hexchangemanager.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class House extends Auditable<String> {
     private String type;
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -39,8 +40,9 @@ public class House extends Auditable<String> {
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<HService> services;
 
-    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
-    private List<Constraint> constraints;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HConstraint> constraints;
 
     @OneToOne(mappedBy = "house", cascade = CascadeType.ALL)
     private Booking booking;

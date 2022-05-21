@@ -1,8 +1,27 @@
 $(document).ready(function(){
-    $('.table .eBtn').on('click', function(event){
+    $('.table .constraintBtn').on('click', function(event){
         event.preventDefault();
         var houseId = $(this).attr('href');
-        $('.myForm #houseId').attr('value', houseId);
-        $('.myForm #exampleModalCenter').modal();
+        $('.addConstraintForm #constraint_houseId').attr('value', houseId);
+        $('.addConstraintForm #constraintModalCenter').modal();
+    });
+});
+
+
+$(document).ready(function(){
+    $('.table .serviceBtn').on('click', function(event){
+        event.preventDefault();
+        var houseId = $(this).attr('href');
+        $('.addServiceForm #service_houseId').attr('value', houseId);
+        $('.addServiceForm #serviceModalCenter').modal();
+    });
+});
+
+$(document).ready(function(){
+    $('.table .advertiseBtn').on('click', function(event){
+        event.preventDefault();
+        var houseId = $(this).attr('href');
+        $('.addAvailabilityForm #availability_houseId').attr('value', houseId);
+        $('.addAvailabilityForm #availabilityModalCenter').modal();
     });
 });

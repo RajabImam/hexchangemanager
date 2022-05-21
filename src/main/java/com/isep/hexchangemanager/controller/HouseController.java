@@ -89,7 +89,8 @@ public class HouseController {
     }
     
     @GetMapping("/list")
-    public String houseList(Model model, Principal principal, @ModelAttribute AddConstraintForm form){
+    //public String houseList(Model model, Principal principal, @ModelAttribute AddConstraintForm form)
+    public String houseList(Model model, Principal principal){
         String email = principal.getName();
         User user = userService.findByEmail(email);
         model.addAttribute("house", houseService.findUserHouse(user));

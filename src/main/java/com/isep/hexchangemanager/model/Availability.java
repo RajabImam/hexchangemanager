@@ -10,12 +10,12 @@ import java.util.Date;
 public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private Date availability_start;
     private Date availability_end;
     private Integer status;
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
 }

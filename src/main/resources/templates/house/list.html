@@ -55,13 +55,13 @@
                     <a class ="btn btn-primary" th:href ="@{'/house/details'}">
                         Details
                     </a>
-                    <a class ="btn btn-primary" th:href ="@{'/house/details/' + ${house.id}}">
+                    <a th:href = @{${house.id}} class ="btn btn-primary serviceBtn">
                         Add service
                     </a>
-                    <a th:href = @{${house.id}} class ="btn btn-primary eBtn" >
+                    <a th:href = @{${house.id}} class ="btn btn-primary constraintBtn" >
                         Add Constraint
                     </a>
-                    <a class ="btn btn-primary" th:href ="@{'/house/detail/' + ${house.id}}">
+                    <a th:href = @{${house.id}} class ="btn btn-primary advertiseBtn">
                         Advertise
                     </a>
                 </td>
@@ -69,24 +69,25 @@
             </tbody>
         </table>
         <!-- Modal -->
-        <div class = myForm>
+        <!--Constraint Modal Div-->
+        <div class = "addConstraintForm">
             <form th:action = @{'/constraint/add'} method="post">
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="constraintModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Add Constraint</h5>
+                        <h5 class="modal-title" id="constraintModalTitle">Add Constraint</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="houseId" name = "houseId" value="" required="required" autofocus="autofocus" />
+                            <input type="hidden" class="form-control" id="constraint_houseId" name = "houseId" value="" required="required" autofocus="autofocus" />
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" required="required" autofocus="autofocus" />
+                            <label for="constraint_description">Description</label>
+                            <input type="text" class="form-control" id="constraint_description" name="description" required="required" autofocus="autofocus" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -98,6 +99,73 @@
         </div>
         </form>
         </div>
+<!--Service Modal Div-->
+        <div class = "addServiceForm">
+            <form th:action = @{'/service/add'} method="post">
+                <div class="modal fade" id="serviceModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="serviceModalTitle">Add Service</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="service_houseId" name = "houseId" value="" required="required" autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="service_description">Description</label>
+                                    <input type="text" class="form-control" id="service_description" name="description" required="required" autofocus="autofocus" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" value="save">Save </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--Availability Modal Div-->
+        <div class = "addAvailabilityForm">
+            <form th:action = @{'/availability/add'} method="post">
+                <div class="modal fade" id="availabilityModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="availabilityModalTitle">Add Availability</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="availability_houseId" name = "houseId" value="" required="required" autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="startDate">Start Date</label>
+                                    <input type="date" class="form-control" id="startDate" name="startDate" required="required" autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="endDate">End Date</label>
+                                    <input type="date" class="form-control" id="endDate" name="endDate" required="required" autofocus="autofocus" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" value="save">Save </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
     </div>
 </div>
 </body>

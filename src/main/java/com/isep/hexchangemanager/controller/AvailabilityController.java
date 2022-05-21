@@ -5,10 +5,13 @@
  */
 package com.isep.hexchangemanager.controller;
 
+import com.isep.hexchangemanager.form.housemanagement.AddAvailabilityForm;
 import com.isep.hexchangemanager.form.housemanagement.AddServiceForm;
 import com.isep.hexchangemanager.form.housemanagement.GroupOrder;
+import com.isep.hexchangemanager.model.Availability;
 import com.isep.hexchangemanager.model.HService;
 import com.isep.hexchangemanager.model.House;
+import com.isep.hexchangemanager.service.IAvailabilityService;
 import com.isep.hexchangemanager.service.IHServiceService;
 import com.isep.hexchangemanager.service.IHouseService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,11 +33,11 @@ import java.util.Optional;
  * @author RAJAB IMAM
  */
 @Controller
-@RequestMapping("/service")
+@RequestMapping("/availability")
 @Slf4j
-public class HServiceController {
+public class AvailabilityController {
     @Autowired
-    private IHServiceService serviceService;
+    private IAvailabilityService availabilityService;
 
     @Autowired
     private IHouseService houseService;
@@ -44,38 +47,39 @@ public class HServiceController {
 
     /** Display the add house screen */
     @GetMapping ("/add" )
-    public String getAddHouse(Model model, @ModelAttribute AddServiceForm form ) {
+    public String getAddAvailability(Model model, @ModelAttribute AddAvailabilityForm form ) {
         return "house/list" ;
     }
 
     /** add house process */
     @PostMapping ("/add" )
     public String postAddService(Model model , Principal principal,
-                               @ModelAttribute @Validated(GroupOrder.class ) AddServiceForm form ,
+                               @ModelAttribute @Validated(GroupOrder.class ) AddAvailabilityForm form ,
                                BindingResult bindingResult ) {
         // Input check result
         if (bindingResult.hasErrors()) {
         // NG: Return to the user signup screen
-            return getAddHouse(model , form);
+            return "redirect:/house/list";
         }
         log.info(form .toString());
 
         //map form details to the house model
-        HService service = modelMapper.map(form, HService.class);
+        Availability availability = modelMapper.map(form, Availability.class);
 
         //get house id from the form
-        Long houseId = form.getHouseId();
+        Long houseId = availability.getId();
 
         try{
         //get house details using the houseId
-        House house = houseService.findById(houseId).get();
+        Optional<House> result = houseService.findById(houseId);
+        House house = result.get();
 
         //set the user field of the house model
-        service.setHouse(house);
+        availability.setHouse(house);
 
-        //try to add house to database
+        //try to add availability to database
 
-            serviceService.addService(service);
+            availabilityService.addAvailability(availability);
             model.addAttribute("status", "Service added successfully");
         }
         catch (Exception e){
@@ -90,15 +94,15 @@ public class HServiceController {
     @GetMapping("/list/{id}")
     public String houseList(Model model,  @PathVariable("userId" ) Long id){
         House house;
-        List<HService> serviceList = new ArrayList<>();
+        List<Availability> availabilityList = new ArrayList<>();
         Optional<House> result = houseService.findById(id);
 
         if(result.isPresent()){
             house = result.get();
-            serviceList = serviceService.findHouseService(house);
+            availabilityList = availabilityService.findAvailabilityHouse(house);
         }
 
-        model .addAttribute("constraintList" , serviceList );
+        model .addAttribute("constraintList" , availabilityList );
 
         return "house/list";
     }

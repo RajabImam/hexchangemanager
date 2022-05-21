@@ -5,10 +5,10 @@
  */
 package com.isep.hexchangemanager.service.ServiceImpl;
 
-import com.isep.hexchangemanager.model.Constraint;
+import com.isep.hexchangemanager.model.HConstraint;
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.repository.ConstraintRepository;
-import com.isep.hexchangemanager.service.IConstraintService;
+import com.isep.hexchangemanager.repository.HConstraintRepository;
+import com.isep.hexchangemanager.service.IHConstraintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,22 +20,22 @@ import java.util.Optional;
  * @author RAJAB IMAM
  */
 @Service
-public class ConstraintServiceImpl implements IConstraintService {
+public class HConstraintServiceImpl implements IHConstraintService {
     @Autowired
-    private ConstraintRepository constraintRepository;
+    private HConstraintRepository constraintRepository;
 
     @Override
-    public void addConstraint(Constraint constraint) {
+    public void addConstraint(HConstraint constraint) {
         constraintRepository.save(constraint);
     }
 
     @Override
-    public List<Constraint> getConstraints() {
+    public List<HConstraint> getConstraints() {
         return constraintRepository.findAll();
     }
 
     @Override
-    public Optional<Constraint> findById(int id) {
+    public Optional<HConstraint> findById(int id) {
         return constraintRepository.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class ConstraintServiceImpl implements IConstraintService {
     }
 
     @Override
-    public List<Constraint> findHouseConstraint(House house) {
+    public List<HConstraint> findHouseConstraint(House house) {
         return constraintRepository.findByHouse(house);
     }
 }

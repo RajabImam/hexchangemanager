@@ -7,12 +7,7 @@ package com.isep.hexchangemanager.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  *
@@ -26,7 +21,7 @@ public class HService extends Auditable<String> {
     private Long id;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
 }

@@ -7,7 +7,7 @@ package com.isep.hexchangemanager.service.ServiceImpl;
 
 import com.isep.hexchangemanager.model.HService;
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.repository.ServiceRepository;
+import com.isep.hexchangemanager.repository.HServiceRepository;
 import com.isep.hexchangemanager.service.IHServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import java.util.Optional;
 @Service
 public class HServiceServiceImpl implements IHServiceService {
     @Autowired
-    private ServiceRepository serviceRepository;
+    private HServiceRepository serviceRepository;
 
     @Override
     public void addService(HService service) {
