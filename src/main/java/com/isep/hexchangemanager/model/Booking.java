@@ -5,8 +5,9 @@
  */
 package com.isep.hexchangemanager.model;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,15 +22,22 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Booking extends Auditable<String> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Date start_date;
-    private Date expiry_date;
-    private Time estimated_check_in;
+    //private Date start_date;
+    //private Date expiry_date;
+    //private Time estimated_check_in;
     private Integer status;
     private Integer owner_rating;
     private Integer house_rating;
+
+    @Column
+    private LocalDate start_date;
+    @Column
+    private LocalDate expiry_date;
+
 
     @OneToOne
     @JoinColumn(name = "house_id")
@@ -42,11 +50,10 @@ public class Booking extends Auditable<String> {
     public Booking() {
     }
 
-    public Booking(Date start_date, Date expiry_date, Time estimated_check_in, Integer status, Integer owner_rating,
+    public Booking(LocalDate start_date, LocalDate expiry_date, Integer status, Integer owner_rating,
             Integer house_rating, House house, User user) {
         this.start_date = start_date;
         this.expiry_date = expiry_date;
-        this.estimated_check_in = estimated_check_in;
         this.status = status;
         this.owner_rating = owner_rating;
         this.house_rating = house_rating;
@@ -54,11 +61,10 @@ public class Booking extends Auditable<String> {
         this.user = user;
     }
 
-    public Booking(Date start_date, Date expiry_date, Time estimated_check_in, Integer status, Integer owner_rating,
+    public Booking(LocalDate start_date, LocalDate expiry_date, Integer status, Integer owner_rating,
             Integer house_rating) {
         this.start_date = start_date;
         this.expiry_date = expiry_date;
-        this.estimated_check_in = estimated_check_in;
         this.status = status;
         this.owner_rating = owner_rating;
         this.house_rating = house_rating;
@@ -72,31 +78,21 @@ public class Booking extends Auditable<String> {
         this.id = id;
     }
 
-    public Date getStart_date() {
+    public LocalDate getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(Date start_date) {
+    public void setStart_date(LocalDate start_date) {
         this.start_date = start_date;
     }
 
-    public Date getExpiry_date() {
+    public LocalDate getExpiry_date() {
         return expiry_date;
     }
 
-    public void setExpiry_date(Date expiry_date) {
+    public void setExpiry_date(LocalDate expiry_date) {
         this.expiry_date = expiry_date;
     }
-
-    public Time getEstimated_check_in() {
-        return estimated_check_in;
-    }
-
-    public void setEstimated_check_in(Time estimated_check_in) {
-        this.estimated_check_in = estimated_check_in;
-    }
-
-  
 
     public Integer getStatus() {
         return status;

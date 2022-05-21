@@ -32,9 +32,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-3">
+                            <a th:href ="@{'/house/list'}" class="nav-link px-3">
                                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                                <span>House Details</span>
+                                <span>My Houses</span>
                             </a>
                         </li>
                     </ul>
@@ -54,22 +54,28 @@
                 <div class="collapse" id="booking">
                     <ul class="navbar-nav ps-3">
                         <li>
-                            <a href="/booking" class="nav-link px-3">
+                            <a href="/booking/add" class="nav-link px-3">
                                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                                <span>Booking</span>
+                                <span>Add Booking</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-3">
+                            <a href="/booking/list" class="nav-link px-3">
                                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                                <span>Booking Info</span>
+                                <span>My Bookings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/booking/bookingrequest" class="nav-link px-3">
+                                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                                <span>Booking Request</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li>
-                <a href="/user_profile" class="nav-link px-3">
+                <a href="/profile" class="nav-link px-3">
                     <span class="me-2"><i class="bi bi-book-fill"></i></span>
                     <span>Account</span>
                 </a>
@@ -85,19 +91,19 @@
             </li>
             <li>
                 <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
-                    Dedicated System
+                    System Documentation
                 </div>
             </li>
             <li>
-                <a href="#" class="nav-link px-3">
+                <a href="/api-ui.html" target="_blank" class="nav-link px-3">
                     <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                    <span>Messaging System</span>
+                    <span>API Documentation</span>
                 </a>
             </li>
             <li>
                 <a href="#" class="nav-link px-3">
                     <span class="me-2"><i class="bi bi-table"></i></span>
-                    <span>Rating System</span>
+                    <span>User Manual</span>
                 </a>
             </li>
         </ul>

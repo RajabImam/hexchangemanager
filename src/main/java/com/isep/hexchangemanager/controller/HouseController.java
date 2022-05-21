@@ -100,4 +100,11 @@ public class HouseController {
         model.addAttribute("status", null);
         return "house/list";
     }
+    
+    @GetMapping("/details")
+    public String houseDetails(Model model){
+        
+        model.addAttribute("details", null);
+        return "/house/details";
+    }
 }

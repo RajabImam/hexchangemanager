@@ -68,7 +68,7 @@ public class PagesController {
         model.addAttribute("booking", new Booking());
         return "/booking/booking";
     }
-    
+     
 //    @GetMapping("/user_profile")
 //    public String profileForm(String email, Model model, HttpSession session){
 //        session.setAttribute("email", email);

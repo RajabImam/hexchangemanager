@@ -14,6 +14,7 @@ import com.isep.hexchangemanager.util.FileUploadUtility;
 import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,6 +28,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author RAJAB IMAM
  */
 @Controller
+@Slf4j
 public class ProfileController {
        
     @Autowired
@@ -85,15 +88,15 @@ public class ProfileController {
         return "/dashboard/user_profile";
     }
     
-    @GetMapping("/user_profile")
+    @GetMapping("/profile")
     public String profileForm(@AuthenticationPrincipal UserPrincipal loginUser, Model model){
         String email = loginUser.getUsername();
         User user = userService.findByEmail(email);
         model.addAttribute("user", user);
-        return "/user/user_profile";
+        return "/user/profile";
     }
     
-    @PostMapping("/user_profile/update")
+    @PostMapping("/profile/update")
     public String update(User user, RedirectAttributes redirectAttributes, 
             @AuthenticationPrincipal UserPrincipal loginUser, 
             @RequestParam("profile") MultipartFile multipartFile) throws IOException{
@@ -115,11 +118,11 @@ public class ProfileController {
        loginUser.setFirstName(user.getFirstname());
        loginUser.setLastName(user.getLastname());
        
-       return "redirect:/user_profile";
+       return "redirect:/user/profile";
     }
     
     //change password handler
-    @PostMapping("/user_profile/change_password")
+    @PostMapping("/profile/change_password")
     public String changePassword(@RequestParam("oldPassword") String oldPassword, 
             @RequestParam("newPassword") String newPassword, 
             @AuthenticationPrincipal UserPrincipal loginUser,
@@ -151,7 +154,7 @@ public class ProfileController {
            redAtt.addFlashAttribute("message", "Enter correct old password.");
        } 
         
-        return "redirect:/user_profile";
+        return "redirect:/user/profile";
     }
 
 }

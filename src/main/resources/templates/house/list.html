@@ -52,10 +52,10 @@
                 <td th:text ="${house.city}" ></td>
                 <td th:text ="${house.type}" ></td>
                 <td>
-                    <a class ="btn btn-primary" th:href ="@{'/house/detail/' + ${house.id}}">
+                    <a class ="btn btn-primary" th:href ="@{'/house/details'}">
                         Details
                     </a>
-                    <a class ="btn btn-primary" th:href ="@{'/house/detail/' + ${house.id}}">
+                    <a class ="btn btn-primary" th:href ="@{'/house/details/' + ${house.id}}">
                         Add service
                     </a>
                     <a th:href = @{${house.id}} class ="btn btn-primary eBtn" >

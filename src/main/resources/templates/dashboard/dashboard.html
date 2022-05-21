@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-6 btn">
-                <a th:href ="@{'/house/add'}">
+                <a th:href ="@{'/booking/bookingrequest'}">
                 <div class="card bg-success text-white h-100">
                     <div class="card-body py-5">Booking Request</div>
                     <div class="card-footer d-flex">
@@ -45,7 +45,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 mb-4 btn">
-                <a  th:href ="@{'/house/add'}">
+                <a  th:href ="@{'/house/list'}">
                 <div class="card bg-primary text-white h-100">
                     <div class="card-body py-5">
                         <span th:text="${#dates.format(#dates.createNow(), 'hh:mm a')}"></span>
@@ -62,7 +62,7 @@
                 </a>
             </div>
             <div class="col-md-4 mb-4 btn">
-                <a  th:href ="@{'/house/add'}">
+                <a  th:href ="@{'/booking/add'}">
                 <div class="card bg-warning text-dark h-100">
                     <div class="card-body py-5">Market Place</div>
                     <div class="card-footer d-flex">
@@ -75,7 +75,7 @@
                 </a>
             </div>
             <div class="col-md-4 mb-4 btn">
-                <a  th:href ="@{'/house/add'}">
+                <a  th:href ="@{'/booking/list'}">
                 <div class="card bg-success text-white h-100">
                     <div class="card-body py-5">My Bookings</div>
                     <div class="card-footer d-flex">
