@@ -62,23 +62,20 @@ public class AvailabilityController {
             return "redirect:/house/list";
         }
         log.info(form .toString());
-
+        try{
         //map form details to the house model
         Availability availability = modelMapper.map(form, Availability.class);
 
         //get house id from the form
-        Long houseId = availability.getId();
+        Long houseId = form.getHouseId();
 
-        try{
         //get house details using the houseId
-        Optional<House> result = houseService.findById(houseId);
-        House house = result.get();
+        House house = houseService.findById(houseId).get();
 
         //set the user field of the house model
         availability.setHouse(house);
 
-        //try to add availability to database
-
+        //add availability to database
             availabilityService.addAvailability(availability);
             model.addAttribute("status", "Service added successfully");
         }
@@ -99,7 +96,7 @@ public class AvailabilityController {
 
         if(result.isPresent()){
             house = result.get();
-            availabilityList = availabilityService.findAvailabilityHouse(house);
+            availabilityList = availabilityService.findHouseAvailability(house);
         }
 
         model .addAttribute("constraintList" , availabilityList );

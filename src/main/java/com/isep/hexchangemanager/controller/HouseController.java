@@ -8,10 +8,11 @@ package com.isep.hexchangemanager.controller;
 import com.isep.hexchangemanager.form.housemanagement.AddConstraintForm;
 import com.isep.hexchangemanager.form.housemanagement.AddHouseForm;
 import com.isep.hexchangemanager.form.housemanagement.GroupOrder;
+import com.isep.hexchangemanager.model.HConstraint;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.model.User;
-import com.isep.hexchangemanager.service.IHouseService;
-import com.isep.hexchangemanager.service.UserService;
+import com.isep.hexchangemanager.service.*;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -22,10 +23,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.swing.*;
 
 /**
  *
@@ -37,6 +37,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HouseController {
     @Autowired
     private IHouseService houseService;
+
+    @Autowired
+    private IHConstraintService hConstraintService;
+
+    @Autowired
+    private IHServiceService hServiceService;
+
+    @Autowired
+    private IAvailabilityService availabilityService;
 
     @Autowired
     private UserService userService;
@@ -102,10 +111,23 @@ public class HouseController {
         return "house/list";
     }
     
-    @GetMapping("/details")
-    public String houseDetails(Model model){
-        
-        model.addAttribute("details", null);
-        return "/house/details";
+    @GetMapping("/detail")
+    public String houseDetails(Model model, @RequestParam("houseId") String houseId){
+        try{
+           //get house by id
+            House house = houseService.findById(Long.parseLong(houseId)).get();
+            //add constraints
+            house.setConstraints(hConstraintService.findHouseConstraint(house));
+            //add the services
+            house.setServices(hServiceService.findHouseService(house));
+            //get availability dates
+            house.setAvailabilities(availabilityService.findHouseAvailability(house));
+
+            model.addAttribute("house", house);
+        }
+        catch(Exception e){
+            model.addAttribute("status", "An error occured");
+        }
+        return "house/detail";
     }
 }

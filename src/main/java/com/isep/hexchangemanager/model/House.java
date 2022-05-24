@@ -48,5 +48,5 @@ public class House extends Auditable<String> {
     private Booking booking;
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
-    private List<Availability> availability;
+    private List<Availability> availabilities;
 }
