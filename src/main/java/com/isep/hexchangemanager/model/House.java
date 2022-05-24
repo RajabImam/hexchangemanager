@@ -34,7 +34,8 @@ public class House extends Auditable<String> {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Images> images;
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/app_layout1/layout}">
+
+<head>
+    <title>Add House</title>
+    <!-- Read Dedicated CSS -->
+    <link rel="stylesheet" th:href="@{/css/house/addhouse.css}">
+</head>
+    <body>
+            <div layout:fragment="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Add House Images</h4>
+                    </div>
+                </div>
+                    <div class = "add-house-form">
+                        <form th:action="@{/image/add}" enctype="multipart/form-data" method="post" th:object="${houseimages}">
+                            <div class="form-group">
+                            <input type="hidden" class="form-control" id="images_houseId" name = "houseId" value="" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label for="image1">Main Image</label>
+                                <input class="form-control" type="file" id="image1" name="mainImage" accept="image/png, image/jpeg" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <label for="image2">Additional Image 1</label>
+                                <input type="file" class="form-control" id="image2" name="extraImage" accept="image/png, image/jpeg" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <label for="image3">Additional Image 2</label>
+                                <input type="file" class="form-control" id="image3" name="extraImage" accept="image/png, image/jpeg" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <label for="image3">Additional Image 3 - Optional</label>
+                                <input type="file" class="form-control" id="image3" name="extraImage" accept="image/png, image/jpeg" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload Images</button>
+                        </form>
+                    </div>
+            </div>
+    </body>
+</html>

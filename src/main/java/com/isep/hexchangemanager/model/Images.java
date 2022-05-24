@@ -6,58 +6,34 @@
 package com.isep.hexchangemanager.model;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.Data;
 
 /**
  *
  * @author RAJAB IMAM
  */
 @Entity
+@Data
 public class Images extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String image;
+    private String main_image;
+    private String extra_image_1;
+    private String extra_image_2;
+    private String extra_image_3;
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
 
-    public Images() {
-    }
-
-    public Images(String image, House house) {
-        this.image = image;
-        this.house = house;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
-
+  
 }

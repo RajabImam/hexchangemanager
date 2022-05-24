@@ -7,6 +7,15 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $('.table .imageBtn').on('click', function(event){
+        event.preventDefault();
+        var houseId = $(this).attr('href');
+        $('.addImageForm #image_houseId').attr('value', houseId);
+        $('.addImageForm #imageModalCenter').modal();
+    });
+});
+
 
 $(document).ready(function(){
     $('.table .serviceBtn').on('click', function(event){

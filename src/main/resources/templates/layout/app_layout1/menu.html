@@ -81,7 +81,7 @@
                 </a>
             </li>
             <li>
-                <a href="/users" class="nav-link px-3">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users" class="nav-link px-3">
                     <span class="me-2"><i class="bi bi-book-fill"></i></span>
                     <span>All Users</span>
                 </a>

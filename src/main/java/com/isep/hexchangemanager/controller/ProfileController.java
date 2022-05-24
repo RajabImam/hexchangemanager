@@ -106,7 +106,7 @@ public class ProfileController {
             
             User savedUser = userService.updateUser(user);
             
-            String profileDir = "/uploads/" + savedUser.getId();
+            String profileDir = "images/uploads/" + savedUser.getId();
             
             FileUploadUtility.saveFile(profileDir, fileName, multipartFile);
 

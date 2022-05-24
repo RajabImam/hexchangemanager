@@ -5,7 +5,6 @@
  */
 package com.isep.hexchangemanager.controller;
 
-import com.isep.hexchangemanager.form.housemanagement.AddConstraintForm;
 import com.isep.hexchangemanager.form.housemanagement.AddHouseForm;
 import com.isep.hexchangemanager.form.housemanagement.GroupOrder;
 import com.isep.hexchangemanager.model.House;
@@ -43,6 +42,8 @@ public class HouseController {
 
     @Autowired
     private ModelMapper modelMapper ;
+    
+    
 
     /** Display the add house screen */
     @GetMapping ("/add" )
@@ -108,4 +109,6 @@ public class HouseController {
         model.addAttribute("details", null);
         return "/house/details";
     }
+    
+   
 }
