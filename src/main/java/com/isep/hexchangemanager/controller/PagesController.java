@@ -25,6 +25,11 @@ public class PagesController {
         return "index";
     }
     
+    @GetMapping("/search")
+    public String showSearch(){
+        return "searchresult";
+    }
+    
     @GetMapping("/about")
     public String aboutPage(){
         return "/hm/about";

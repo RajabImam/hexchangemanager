@@ -11,8 +11,8 @@ public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date availability_start;
-    private Date availability_end;
+    private Date startDate;
+    private Date endDate;
     private Integer status;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

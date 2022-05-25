@@ -2,11 +2,107 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/site_layout/layout}">
 
-<head>
-</head>
+    <head>
+    </head>
 
-<body>
-<div layout:fragment="content" class="container marketing">
-    <h1>Discovery</h1>
-</div><!-- /.container -->
-</body>
+    <body>
+        <div layout:fragment="content">
+            <div class="container mt-5">
+                <section class="py-3">
+                    <h1 class="text-secondary py-2">Discovery</h1>
+                </section>
+
+                <!--Discovery--->
+                <section class="container mb-5">
+                    <div class="row mt-3">
+                        <div class="col-lg-6 mt-3 py-5 pl-5">
+                            <img class="animated zoomIn img-fluid" alt="" src="/images/property-1.jpg">
+                        </div>
+                        <div class="col-lg-6 my-auto">
+                            <div class="row">
+                                <div class="home-content offset-lg-1 col-lg-10 overflow-hidden">
+                                    <h1 class="animated slideInLeft delay-1s pb-0 text-secondary">Discover the World.</h1>
+                                    <p class="animated slideInLeft delay-2s pb-0">Something short and leading about the collection below—its contents, the creator, etc. 
+                                        Make it short and sweet, but not too short so folks don’t simply skip over it entirely.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--Discovery-->
+                <section>
+                    <div class="text-center py-2">
+                        <h1 class="text-secondary py-0">Places to Visit</h1>
+                        <hr/>
+                    </div>
+                    <div class="container mb-1">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <a href="#">
+                                    <img src="/images/eiffel.jpg" class="card-img-top" alt="Eiffel">
+                                    <h4 class="text-white py-3">Eiffel Tower</h4></a>
+                                <p class="pb-5">Something short and leading about the collection below—its contents, the creator, etc. 
+                                    Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#">
+                                    <img src="/images/louvre.jpg" class="card-img-top" alt="Louvre">
+                                    <h4 class="text-white py-3">Louvre</h4></a>
+                                <p class="pb-5">Something short and leading about the collection below—its contents, the creator, etc. 
+                                    Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#">
+                                    <img src="/images/montpasse.jpg" class="card-img-top" alt="Montpanasse">
+                                    <h4 class="text-white py-3">Montpanasse</h4></a>
+                                <p class="pb-5">Something short and leading about the collection below—its contents, the creator, etc. 
+                                    Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+                            </div> 
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="text-center py-2">
+                        <h1 class="text-secondary py-0">More Discovery</h1>
+                        <hr/>
+                    </div>
+                    <div class="container mb-5 pb-5">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="/images/africa.jpg" class="card-img-top" alt="Africa">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-secondary">Africa</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="/images/rome.jpg" class="card-img-top" alt="Rome">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-secondary">Rome</h5>
+                                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="/images/uae.jpg" class="card-img-top" alt="UAE">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-secondary">UAE</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+       </div>
+    </body>
+</html>

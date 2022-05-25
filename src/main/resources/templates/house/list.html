@@ -32,6 +32,9 @@
                 search(REST)
             </button>
         </form>-->
+        <a class ="btn btn-primary" th:href ="@{'/house/add'}">
+           Add House
+        </a>
     </div>
     <!-- List display -->
     <div>
@@ -52,7 +55,7 @@
                 <td th:text ="${house.city}" ></td>
                 <td th:text ="${house.type}" ></td>
                 <td>
-                    <a class ="btn btn-primary" th:href ="@{'/house/details'}">
+                    <a class ="btn btn-primary" th:href ="@{'/house/detail?houseId=' + ${house.id}}">
                         Details
                     </a>
                     <!-- <a th:href = "@{'/image/add'}" class ="btn btn-primary">-->
@@ -211,8 +214,6 @@
                 </div>
             </form>
         </div>
-
-
     </div>
 </div>
 </body>

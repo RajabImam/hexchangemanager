@@ -19,5 +19,5 @@ public interface IAvailabilityService {
     // delete availability by id
     void delete(Long id);
 
-    List<Availability> findAvailabilityHouse(House house);
+    List<Availability> findHouseAvailability(House house);
 }

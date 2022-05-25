@@ -43,7 +43,7 @@ public class AvailabilityServiceImpl implements IAvailabilityService {
     }
 
     @Override
-    public List<Availability> findAvailabilityHouse(House house) {
+    public List<Availability> findHouseAvailability(House house) {
         return availabilityRepository.findByHouse(house);
     }
 

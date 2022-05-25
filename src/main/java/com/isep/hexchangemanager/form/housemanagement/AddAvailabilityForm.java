@@ -13,8 +13,8 @@ public class AddAvailabilityForm {
     private Long houseId ;
 
     @DateTimeFormat (pattern = "dd/MM/yyyy" )
-    private Date startDate ;
+    private String startDate;
 
     @DateTimeFormat (pattern = "dd/MM/yyyy" )
-    private Date endDate ;
+    private String endDate;
 }
