@@ -10,6 +10,13 @@
 
 <body>
 <div layout:fragment ="content" >
+    <div style="margin:0px;" class="bg-danger text-white text-center" th:if="${status == '0'}">
+        <span  th:text="${message}"></span>
+    </div>
+    <div style="margin:0px;" class="bg-success text-white text-center" th:if="${status == '1'}">
+        <span th:text="${message}"></span>
+    </div>
+
     <div class ="header border-bottom" >
         <h1 class ="h2" >My Bookings</h1>
     </div>
@@ -39,16 +46,35 @@
             <thead class ="thead-light" >
             <tr>
                 <th class ="th-width" >Id</th>
-                <th class ="th-width" >House</th>
-                <th class ="th-width" >Check In Date</th>
-                <th class ="th-width" >Check Out Date</th>
-                <th class ="th-width" >Estimated Check In Time</th>
+                <th class ="th-width" >Start Date</th>
+                <th class ="th-width" >End Date</th>
+                <th class ="th-width" >Status</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                
+            <tr th:each ="booking: ${bookingList}" >
+                <td th:text ="${booking.id}" ></td>
+                <td th:text ="${booking.startDate}" ></td>
+                <td th:text ="${booking.endDate}" ></td>
+                <td th:switch="${booking.status}">
+                    <span th:case="'0'" th:text="PENDING"></span>
+                    <span th:case="'1'" th:text="APPROVED"></span>
+                    <span th:case="'3'" th:text="DISAPPROVED"></span>
+                    <span th:case="'4'" th:text="CANCELLED"></span>
+                    <span th:case="*" th:text=""></span>
+                </td>
+                <td>
+                    <a class ="btn btn-primary" th:href ="@{'/house/detail?houseId='}">
+                        View House
+                    </a>
+                    <!-- <a th:href = "@{'/image/add'}" class ="btn btn-primary">-->
+                    <span th:if="${booking.status == 0}">
+                        <a th:href = @{${booking.id}} class ="btn btn-primary imageBtn" >
+                        Cancel Booking
+                    </a>
+                    </span>
+                </td>
             </tr>
             </tbody>
         </table>

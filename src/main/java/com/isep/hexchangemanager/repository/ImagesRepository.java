@@ -6,7 +6,7 @@
 package com.isep.hexchangemanager.repository;
 
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.model.Images;
+import com.isep.hexchangemanager.model.Image;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
  * @author RAJAB IMAM
  */
 @Repository
-public interface ImagesRepository extends JpaRepository<Images, Integer>{
-    public List<Images> findByHouse(House house);
+public interface ImagesRepository extends JpaRepository<Image, Integer>{
+    public List<Image> findByHouse(House house);
 }

@@ -76,10 +76,12 @@ public class HServiceController {
         //try to add house to database
 
             serviceService.addService(service);
-            model.addAttribute("status", "Service added successfully");
+            model.addAttribute("status", "1");
+            model.addAttribute("message", "Service added successfully");
         }
         catch (Exception e){
-            model.addAttribute("status", "Service added not successful");
+            model.addAttribute("status", "0");
+            model.addAttribute("message", "Service added not successful");
             log.error(e.getMessage());
         }
 

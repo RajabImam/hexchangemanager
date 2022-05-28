@@ -10,7 +10,7 @@
         <div layout:fragment="content">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 th:text = ${house.name}></h4>
+                    <h2 th:text = ${house.name}></h2>
                 </div>
             </div>
             <div class="row">
@@ -57,7 +57,8 @@
                             <tbody>
                             <tr th:each ="availability: ${house.availabilities}" >
                                 <!--<td th:text ="${constraint.id}" ></td>-->
-                                <td><span th:text ="${#dates.format(availability.startDate, 'dd/MM/yyyy')}"></span> - <span th:text ="${#dates.format(availability.endDate, 'dd/MM/yyyy')}"></span></td>
+                                <!--<td><span th:text ="${#dates.format(availability.startDate, 'dd/MM/yyyy')}"></span> - <span th:text ="${#dates.format(availability.endDate, 'dd/MM/yyyy')}"></span></td>-->
+                                <td><span th:text ="${availability.startDate}"></span> - <span th:text ="${availability.endDate}"></span></td>
                                 <td>
                                     <a class ="btn btn-primary constraintDelete" th:href ="@{'/availability/delete?availabilityId=' + ${availability.id}}">
                                         Delete

@@ -5,9 +5,11 @@
  */
 package com.isep.hexchangemanager.repository;
 
-import com.isep.hexchangemanager.model.Booking;
+import com.isep.hexchangemanager.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  *
@@ -15,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
-
+    List<Booking> findByUser(User user);
+    List<Booking> findByHouse(House house);
 }

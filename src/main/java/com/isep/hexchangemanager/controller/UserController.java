@@ -43,13 +43,11 @@ public class UserController {
     }*/
     
     @PostMapping("/signup")
-    public RedirectView createUserAccount(User user, RedirectAttributes redAtt){
-       
-        userService.createUser(user);
-        RedirectView redView = new RedirectView("/login", true);
-        redAtt.addFlashAttribute("message", "Account created successfully. You can now login");
-        
-        return redView;
+    public RedirectView createUserAccount(Model model, User user, RedirectAttributes redAtt){
+           userService.createUser(user);
+           RedirectView redView = new RedirectView("/login", true);
+           redAtt.addFlashAttribute("message", "Account created successfully. You can now login");
+           return redView;
     }
     
     @GetMapping("/users")

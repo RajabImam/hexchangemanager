@@ -36,7 +36,7 @@ public class House extends Auditable<String> {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Images> images;
+    private List<Image> images;
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<HService> services;
@@ -45,8 +45,8 @@ public class House extends Auditable<String> {
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HConstraint> constraints;
 
-    @OneToOne(mappedBy = "house", cascade = CascadeType.ALL)
-    private Booking booking;
+    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Availability> availabilities;

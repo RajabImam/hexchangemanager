@@ -35,6 +35,12 @@ and open the template in the editor.
                 </div>
             </nav>
         </header>
+        <div style="margin:0px;" class="bg-danger text-white text-center" th:if="${status == '0'}">
+            <span  th:text="${message}"></span>
+        </div>
+        <div style="margin:0px;" class="bg-success text-white text-center" th:if="${status == '1'}">
+            <span th:text="${message}"></span>
+        </div>
         <div class="container d-flex align-items-center justify-content-center">
             <!-- Content here -->
 

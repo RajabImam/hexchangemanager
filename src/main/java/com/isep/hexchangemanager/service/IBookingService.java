@@ -19,36 +19,22 @@ import org.springframework.stereotype.Service;
  * @author RAJAB IMAM
  */
 @Service
-public class BookingService {
-    @Autowired
-    private BookingRepository bookingRepository;
-
+public interface IBookingService {
     // Return all bookings
-    public List<Booking> getBookings() {
-        return bookingRepository.findAll();
-    }
+    List<Booking> getBookings();
 
     // Add new booking
-    public void save(Booking booking) {
-        bookingRepository.save(booking);
-    }
-    
-    public void addBooking(Booking booking, User user, House house){
-        
-        booking.setUser(user);
-        booking.setHouse(house);
-        booking.setStatus(1);
-        bookingRepository.save(booking);
-    }
+    void save(Booking booking);
 
     // find booking by id
-    public Optional<Booking> findById(int id) {
-        return bookingRepository.findById(id);
-    }
+    Optional<Booking> findById(int id);
 
     // delete booking by id
-    public void delete(Integer id) {
-        bookingRepository.deleteById(id);
-    }
+    void delete(Integer id);
 
+    // get all bookings associated with a house
+    List<Booking> findHouseBooking(House house);
+
+    // get all bookings associated with a user
+    List<Booking> findUserBooking(User user);
 }

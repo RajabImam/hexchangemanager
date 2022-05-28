@@ -48,4 +48,18 @@ public class HouseServiceImpl implements IHouseService {
         return houseRepository.findByUser(user);
     }
 
+    @Override
+    public List<House> houseSearchByDateAndCountry(String startDate, String endDate, String country) {
+        return houseRepository.findAvailableHouseByDurationAndCountry(startDate,endDate,country);
+    }
+
+    @Override
+    public List<House> houseSearchbystartDate(String startDate) {
+        return houseRepository.findAvailableHouseByCountry(startDate);
+    }
+
+    @Override
+    public List<House> houseSearchbyCountry(String country) {
+        return houseRepository.findAvailableHouseByCountry(country);
+    }
 }

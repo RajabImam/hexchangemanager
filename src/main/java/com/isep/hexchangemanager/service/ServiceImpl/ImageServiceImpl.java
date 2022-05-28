@@ -6,9 +6,9 @@
 package com.isep.hexchangemanager.service.ServiceImpl;
 
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.model.Images;
+import com.isep.hexchangemanager.model.Image;
 import com.isep.hexchangemanager.repository.ImagesRepository;
-import com.isep.hexchangemanager.service.ImageService;
+import com.isep.hexchangemanager.service.IImageService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +19,23 @@ import org.springframework.stereotype.Service;
  * @author RAJAB IMAM
  */
 @Service
-public class ImageServiceImpl implements ImageService{
+public class ImageServiceImpl implements IImageService {
     
     @Autowired
     private ImagesRepository imagesRepository;
 
     @Override
-    public Images addImage(Images images) {
+    public Image addImage(Image images) {
         return imagesRepository.save(images);
     }
 
     @Override
-    public List<Images> getImages() {
+    public List<Image> getImages() {
         return imagesRepository.findAll();
     }
 
     @Override
-    public Optional<Images> findById(int id) {
+    public Optional<Image> findById(int id) {
         return imagesRepository.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class ImageServiceImpl implements ImageService{
     }
 
     @Override
-    public List<Images> findHouseImage(House house) {
+    public List<Image> findHouseImage(House house) {
         return imagesRepository.findByHouse(house);
     }
     

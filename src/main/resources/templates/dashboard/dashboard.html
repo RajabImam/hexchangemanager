@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-6 btn">
-                <a th:href ="@{'/booking/bookingrequest'}">
+                <a th:href ="@{'/booking/request'}">
                 <div class="card bg-success text-white h-100">
                     <div class="card-body py-5">Booking Request</div>
                     <div class="card-footer d-flex">
@@ -88,6 +88,30 @@
                 </a>
             </div>
         </div>
+        <!-- Search Start -->
+        <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+            <div class="container">
+                <div class="row g-2">
+                    <div class="col-md-12">
+                        <form th:action="@{/marketplace/search}" class="row g-2 form-inline">
+                            <div class="form-group col-md-3">
+                                <input type="Date" class="form-control border-0 w-100 py-3" name = "startDate" id="startDate" placeholder="Start Date">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="Date" class="form-control border-0 w-100 py-3" name = "endDate" id="endDate" placeholder="End Date">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" class="form-control border-0 w-100 py-3" name = "country" id="country" placeholder="Country">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search End -->
     </div>
 </body>
 

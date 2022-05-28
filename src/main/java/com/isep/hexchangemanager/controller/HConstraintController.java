@@ -75,10 +75,12 @@ public class HConstraintController {
 
         //add constraint to database
             constraintService.addConstraint(constraint);
-            model.addAttribute("status", "Constraint added successfully");
+            model.addAttribute("status", "1");
+            model.addAttribute("message", "Constraint added successfully");
         }
         catch (Exception e){
-            model.addAttribute("status", "Constraint added not successful");
+            model.addAttribute("status", "0");
+            model.addAttribute("message", "Constraint added not successful");
             log.error(e.getMessage());
         }
 

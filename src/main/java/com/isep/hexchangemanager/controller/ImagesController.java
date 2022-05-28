@@ -7,11 +7,10 @@ package com.isep.hexchangemanager.controller;
 
 import com.isep.hexchangemanager.form.housemanagement.AddImageForm;
 import com.isep.hexchangemanager.form.housemanagement.GroupOrder;
-import com.isep.hexchangemanager.model.HConstraint;
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.model.Images;
+import com.isep.hexchangemanager.model.Image;
 import com.isep.hexchangemanager.service.IHouseService;
-import com.isep.hexchangemanager.service.ImageService;
+import com.isep.hexchangemanager.service.IImageService;
 import com.isep.hexchangemanager.util.FileUploadUtility;
 import java.io.IOException;
 import java.security.Principal;
@@ -43,7 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class ImagesController {
     @Autowired
-    private ImageService imageService;
+    private IImageService imageService;
     
     @Autowired
     private IHouseService houseService;
@@ -81,7 +80,7 @@ public class ImagesController {
         Long houseId = form.getHouseId();
 
         //map form details to the house model
-        Images images = modelMapper.map(form, Images.class);
+        Image images = modelMapper.map(form, Image.class);
         
         String mainImageName = StringUtils.cleanPath(mainMultipartFile.getOriginalFilename());
         images.setMain_image(mainImageName);
@@ -94,7 +93,6 @@ public class ImagesController {
            if(count == 2) images.setExtra_image_3(extraImageName);
            
            count++;
-           
         }
 
         try{
@@ -105,7 +103,7 @@ public class ImagesController {
         images.setHouse(house);
 
         //add constraint to database
-        Images savedImage = imageService.addImage(images);
+        Image savedImage = imageService.addImage(images);
             
              //Images savedImage = imageService.addImage(images);
          String houseImagesDir = "./house-images/" + savedImage.getId();
@@ -133,7 +131,7 @@ public class ImagesController {
     @GetMapping("/list/{id}")
     public String houseList(Model model,  @PathVariable("userId" ) Long id){
         House house;
-        List<Images> imagesList = new ArrayList<>();
+        List<Image> imagesList = new ArrayList<>();
         Optional<House> result = houseService.findById(id);
 
         if(result.isPresent()){

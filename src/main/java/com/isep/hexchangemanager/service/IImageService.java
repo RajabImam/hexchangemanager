@@ -6,7 +6,7 @@
 package com.isep.hexchangemanager.service;
 
 import com.isep.hexchangemanager.model.House;
-import com.isep.hexchangemanager.model.Images;
+import com.isep.hexchangemanager.model.Image;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,18 +15,18 @@ import java.util.Optional;
  * @author RAJAB IMAM
  */
 
-public interface ImageService {
+public interface IImageService {
     
-    Images addImage(Images images);
+    Image addImage(Image images);
 
     // get all constraints
-    List<Images> getImages();
+    List<Image> getImages();
 
-    Optional<Images> findById(int id);
+    Optional<Image> findById(int id);
 
     // delete constraint by id
     void delete(int id);
 
     //find all constraints on a particular house
-    List<Images> findHouseImage(House house);
+    List<Image> findHouseImage(House house);
 }

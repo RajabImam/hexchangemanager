@@ -47,6 +47,9 @@ public class HouseController {
     private IAvailabilityService availabilityService;
 
     @Autowired
+    private IImageService imageService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -87,10 +90,12 @@ public class HouseController {
         //try to add house to database
         try{
             houseService.addHouse(house);
-            model.addAttribute("status", "House added successfully");
+            model.addAttribute("status", "1");
+            model.addAttribute("message", "House added successfully");
         }
         catch (Exception e){
-            model.addAttribute("status", "House added not successful");
+            model.addAttribute("status", "0");
+            model.addAttribute("message", "House added not successful");
             log.error(e.getMessage());
         }
 
@@ -108,7 +113,7 @@ public class HouseController {
         List<House> houseList = houseService.findUserHouse(user);
         //Registered in Model
         model .addAttribute("houseList" , houseList );
-        model.addAttribute("status", null);
+        //model.addAttribute("status", null);
         return "house/list";
     }
     
@@ -121,6 +126,8 @@ public class HouseController {
             house.setConstraints(hConstraintService.findHouseConstraint(house));
             //add the services
             house.setServices(hServiceService.findHouseService(house));
+            //get availability images
+            house.setImages(imageService.findHouseImage(house));
             //get availability dates
             house.setAvailabilities(availabilityService.findHouseAvailability(house));
 
@@ -131,6 +138,4 @@ public class HouseController {
         }
         return "house/detail";
     }
-    
-   
 }

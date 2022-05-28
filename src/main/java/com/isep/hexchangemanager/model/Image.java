@@ -5,7 +5,6 @@
  */
 package com.isep.hexchangemanager.model;
 
-import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +21,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-public class Images extends Auditable<String> {
+public class Image extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

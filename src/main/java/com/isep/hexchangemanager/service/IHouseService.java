@@ -19,4 +19,10 @@ public interface IHouseService {
     void delete(Long id);
 
     List<House> findUserHouse(User user);
+
+    List<House> houseSearchByDateAndCountry(String startDate, String endDate, String country);
+
+    List<House> houseSearchbystartDate(String startDate);
+
+    List<House> houseSearchbyCountry(String country);
 }

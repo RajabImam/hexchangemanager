@@ -25,11 +25,6 @@ public class PagesController {
         return "index";
     }
     
-    @GetMapping("/search")
-    public String showSearch(){
-        return "searchresult";
-    }
-    
     @GetMapping("/about")
     public String aboutPage(){
         return "/hm/about";
@@ -60,19 +55,19 @@ public class PagesController {
         return "/dashboard/dashboard";
     }*/
     
-    @GetMapping("/add_house")
+    /*@GetMapping("/add_house")
     public String createHouseForm(String email, Model model, HttpSession session){
         session.setAttribute("email", email);
         model.addAttribute("house", new House());
         return "/house/add_house";
-    }
+    }*/
     
-     @GetMapping("/booking")
+     /*@GetMapping("/booking")
     public String createBookingForm(String email, Model model, HttpSession session){
         session.setAttribute("email", email);
         model.addAttribute("booking", new Booking());
         return "/booking/booking";
-    }
+    }*/
      
 //    @GetMapping("/user_profile")
 //    public String profileForm(String email, Model model, HttpSession session){

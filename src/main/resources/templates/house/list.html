@@ -10,6 +10,12 @@
 
 <body>
 <div layout:fragment ="content" >
+    <div style="margin:0px;" class="bg-danger text-white text-center" th:if="${status == '0'}">
+        <span  th:text="${message}"></span>
+    </div>
+    <div style="margin:0px;" class="bg-success text-white text-center" th:if="${status == '1'}">
+        <span th:text="${message}"></span>
+    </div>
     <div class ="header border-bottom" >
         <h1 class ="h2" >My Houses</h1>
     </div>
