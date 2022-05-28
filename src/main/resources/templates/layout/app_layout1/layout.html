@@ -31,6 +31,13 @@
     <main class="mt-5 pt-3">
         <div class="container-fluid">
             <div layout:fragment="content"></div>
+            <!--Message Box-->
+            <div th:if="${session.message}"  class="container">
+                <div th:classappend="${'alert-'+session.message.type}" class="alert  text-center" role="alert">
+                    <span th:text="${session.message.content}"></span>
+                </div>
+                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+            </div>
         </div>
     </main>
     <script src="/webjars/jquery/2.2.3/jquery.min.js"></script>

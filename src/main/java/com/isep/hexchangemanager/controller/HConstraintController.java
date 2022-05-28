@@ -11,6 +11,7 @@ import com.isep.hexchangemanager.model.HConstraint;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.service.IHConstraintService;
 import com.isep.hexchangemanager.service.IHouseService;
+import com.isep.hexchangemanager.util.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -52,7 +54,7 @@ public class HConstraintController {
     @PostMapping ("/add" )
     public String postAddConstraint(Model model , Principal principal,
                                @ModelAttribute @Validated(GroupOrder.class ) AddConstraintForm form ,
-                               BindingResult bindingResult ) {
+                               BindingResult bindingResult, HttpSession session) {
         // Input check result
         if (bindingResult.hasErrors()) {
         // NG: Return to the user signup screen
@@ -77,10 +79,12 @@ public class HConstraintController {
             constraintService.addConstraint(constraint);
             model.addAttribute("status", "1");
             model.addAttribute("message", "Constraint added successfully");
+            session.setAttribute("message", new Message("Constraint added successfully", "success"));
         }
         catch (Exception e){
             model.addAttribute("status", "0");
             model.addAttribute("message", "Constraint added not successful");
+            session.setAttribute("message", new Message("Constraint not added. Try again", "danger"));
             log.error(e.getMessage());
         }
 

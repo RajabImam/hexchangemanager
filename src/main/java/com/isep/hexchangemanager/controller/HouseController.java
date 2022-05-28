@@ -11,9 +11,11 @@ import com.isep.hexchangemanager.model.HConstraint;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.model.User;
 import com.isep.hexchangemanager.service.*;
+import com.isep.hexchangemanager.util.Message;
 
 import java.security.Principal;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -67,7 +69,7 @@ public class HouseController {
     @PostMapping ("/add" )
     public String postAddHouse(Model model , Principal principal,
                                @ModelAttribute @Validated(GroupOrder.class ) AddHouseForm form,
-                               BindingResult bindingResult ) {
+                               BindingResult bindingResult, HttpSession session) {
         // Input check result
         if (bindingResult.hasErrors()) {
         // NG: Return to the user signup screen
@@ -92,10 +94,12 @@ public class HouseController {
             houseService.addHouse(house);
             model.addAttribute("status", "1");
             model.addAttribute("message", "House added successfully");
+            session.setAttribute("message", new Message("House added successfully", "success"));
         }
         catch (Exception e){
             model.addAttribute("status", "0");
             model.addAttribute("message", "House added not successful");
+            session.setAttribute("message", new Message("House not added. Try again", "danger"));
             log.error(e.getMessage());
         }
 

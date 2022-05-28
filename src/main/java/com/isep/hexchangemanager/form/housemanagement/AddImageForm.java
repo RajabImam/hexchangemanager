@@ -20,6 +20,4 @@ public class AddImageForm {
 
     //@NotBlank (groups = ValidGroup1.class )
     private String main_image ;
-    private String extra_image_1 ;
-    private String extra_image_2 ;
 }

@@ -11,6 +11,7 @@ import com.isep.hexchangemanager.model.HService;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.service.IHServiceService;
 import com.isep.hexchangemanager.service.IHouseService;
+import com.isep.hexchangemanager.util.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -52,7 +54,7 @@ public class HServiceController {
     @PostMapping ("/add" )
     public String postAddService(Model model , Principal principal,
                                @ModelAttribute @Validated(GroupOrder.class ) AddServiceForm form ,
-                               BindingResult bindingResult ) {
+                               BindingResult bindingResult, HttpSession session ) {
         // Input check result
         if (bindingResult.hasErrors()) {
         // NG: Return to the user signup screen
@@ -78,10 +80,12 @@ public class HServiceController {
             serviceService.addService(service);
             model.addAttribute("status", "1");
             model.addAttribute("message", "Service added successfully");
+            session.setAttribute("message", new Message("Service added successfully", "success"));
         }
         catch (Exception e){
             model.addAttribute("status", "0");
             model.addAttribute("message", "Service added not successful");
+            session.setAttribute("message", new Message("Service not added. Try again", "danger"));
             log.error(e.getMessage());
         }
 

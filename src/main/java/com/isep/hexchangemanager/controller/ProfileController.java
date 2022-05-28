@@ -99,7 +99,7 @@ public class ProfileController {
     @PostMapping("/profile/update")
     public String update(User user, RedirectAttributes redirectAttributes, 
             @AuthenticationPrincipal UserPrincipal loginUser, 
-            @RequestParam("profile") MultipartFile multipartFile) throws IOException{
+            @RequestParam("profile") MultipartFile multipartFile, HttpSession session) throws IOException{
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setProfile_img(fileName);
@@ -109,6 +109,7 @@ public class ProfileController {
             String profileDir = "images/uploads/" + savedUser.getId();
             
             FileUploadUtility.saveFile(profileDir, fileName, multipartFile);
+            session.setAttribute("message", new com.isep.hexchangemanager.util.Message("Profile updated successfully", "success"));
 
         }else{
             if(user.getProfile_img().isEmpty()) user.setProfile_img(null);
@@ -146,12 +147,13 @@ public class ProfileController {
            System.out.println("Password change successfully...");
            session.setAttribute("message", "Password Changed Success");
            redAtt.addFlashAttribute("message", "Password changed successfully.");
-           
+           session.setAttribute("message", new com.isep.hexchangemanager.util.Message("Password changed successfully.", "success"));
        }else{
            //error
            System.out.println("Wrong old Password ");
            session.setAttribute("message", "Enter correct old password");
            redAtt.addFlashAttribute("message", "Enter correct old password.");
+           session.setAttribute("message", new com.isep.hexchangemanager.util.Message("Wrong old password. Try again", "danger"));
        } 
         
         return "redirect:/user/profile";

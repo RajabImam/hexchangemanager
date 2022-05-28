@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.isep.hexchangemanager.util.BookingStatus;
+import com.isep.hexchangemanager.util.Message;
+import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,7 @@ public class BookingController {
     @GetMapping("/add")
     public String addBooking(Model model , Principal principal,
                              @ModelAttribute @Validated(GroupOrder.class ) AddBookingForm form,
-                             BindingResult bindingResult){
+                             BindingResult bindingResult, HttpSession session){
 
         // Input check result
         if (bindingResult.hasErrors()) {
@@ -109,10 +111,12 @@ public class BookingController {
             bookingService.save(booking);
             model.addAttribute("status", "1");
             model.addAttribute("message", "Booking added successfully");
+            session.setAttribute("message", new Message("Booking added successfully", "success"));
         }
         catch (Exception e){
             model.addAttribute("status", "0");
             model.addAttribute("message", "Booking not successful");
+            session.setAttribute("message", new Message("Booking not added. Try again", "danger"));
             log.error(e.getMessage());
         }
         return "booking/list";

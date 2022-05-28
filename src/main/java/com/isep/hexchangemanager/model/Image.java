@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import lombok.Data;
 
 /**
@@ -26,13 +27,17 @@ public class Image extends Auditable<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String main_image;
-    private String extra_image_1;
-    private String extra_image_2;
-    private String extra_image_3;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
+    
+    @Transient
+    public String getHouseImagePath(){
+        if(main_image == null || id == null) return null;
+        
+        return "/house-images/" + id + "/" + main_image;
+    }
 
   
 }

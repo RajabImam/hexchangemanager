@@ -13,6 +13,7 @@ import com.isep.hexchangemanager.model.Availability;
 import com.isep.hexchangemanager.model.HService;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.service.*;
+import com.isep.hexchangemanager.util.Message;
 import com.isep.hexchangemanager.util.StringToLocalDate;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +74,7 @@ public class AvailabilityController {
     @PostMapping ("/add" )
     public String postAddAvailability(Model model , Principal principal,
                                @ModelAttribute @Validated(GroupOrder.class ) AddAvailabilityForm form ,
-                               BindingResult bindingResult ) {
+                               BindingResult bindingResult, HttpSession session ) {
         // Input check result
         if (bindingResult.hasErrors()) {
         // NG: Return to the user signup screen
@@ -107,6 +109,8 @@ public class AvailabilityController {
             availabilityService.addAvailability(availability);
             model.addAttribute("status", "1");
             model.addAttribute("message", "Availability added successfully");
+            //success message
+            session.setAttribute("message", new Message("Availability Added Successfully - ", "success"));
         }
 
         //else return error message
@@ -118,6 +122,8 @@ public class AvailabilityController {
         catch (Exception e){
             model.addAttribute("status", "Service added not successful");
             log.error(e.getMessage());
+            //success message
+            session.setAttribute("message", new Message("Something went wrong! Try again", "danger"));
         }
 
         // Redirect to house list

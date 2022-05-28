@@ -3,31 +3,20 @@
       layout:decorate="~{layout/app_layout1/layout}">
 
     <head>
-        <title>House Details</title>
+        <title>House Images</title>
         <!-- Read Dedicated CSS -->
     </head>
     <body>
         <div layout:fragment="content">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 th:text = ${house.name}></h2>
+                    <h2>House Images</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="row">
-             
-                        <div th:each ="image: ${house.images}" class="col-4">
-                            <div style="height:150px;width:150px;">
-                                <img style="width: 100%; height: 100%; object-fit: cover;"  th:src="${'/house-images/' + image.id + '/' + image.main_image}" />
-                            </div>
-                            <div>
-                                 <a class ="btn btn-primary constraintDelete" th:href ="@{'/image/delete?imageId=' + ${image.id}}">
-                                                    Delete
-                                                </a>
-                            </div>
-                        </div>
-                     
+                        
                     </div>
                     <div class="row">
                         <div class="card">
@@ -36,9 +25,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-text">
-                                    <td th:text = ${house.description} ></td>
-                                    <td th:text ="${house.type}" ></td>
-                                    <td th:text ="${house.city}" ></td>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -57,16 +44,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each ="availability: ${house.availabilities}" >
-                                <!--<td th:text ="${constraint.id}" ></td>-->
-                                <!--<td><span th:text ="${#dates.format(availability.startDate, 'dd/MM/yyyy')}"></span> - <span th:text ="${#dates.format(availability.endDate, 'dd/MM/yyyy')}"></span></td>-->
-                                <td><span th:text ="${availability.startDate}"></span> - <span th:text ="${availability.endDate}"></span></td>
-                                <td>
-                                    <a class ="btn btn-primary constraintDelete" th:href ="@{'/availability/delete?availabilityId=' + ${availability.id}}">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
+                                
                             </tbody>
                         </table>
                             </div>
@@ -89,15 +67,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each ="constraint: ${house.constraints}" >
-                                            <!--<td th:text ="${constraint.id}" ></td>-->
-                                            <td th:text ="${constraint.description}" ></td>
-                                            <td>
-                                                <a class ="btn btn-primary constraintDelete" th:href ="@{'/constraint/delete?constraintId=' + ${constraint.id}}">
-                                                    Delete
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        
                                         </tbody>
                                     </table>
                                 </div>
@@ -119,15 +89,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each ="service: ${house.services}" >
-                                            <!--<td th:text ="${service.id}" ></td>-->
-                                            <td th:text ="${service.description}" ></td>
-                                            <td>
-                                                <a class ="btn btn-primary constraintDelete" th:href ="@{'/service/delete?serviceId=' + ${service.id}}">
-                                                    Delete
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        
                                         </tbody>
                                     </table>
                                 </div>
