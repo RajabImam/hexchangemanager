@@ -46,8 +46,5 @@ public class House extends Auditable<String> {
     private List<HConstraint> constraints;
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
-    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Availability> availabilities;
 }

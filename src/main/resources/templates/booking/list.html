@@ -60,8 +60,8 @@
                 <td th:switch="${booking.status}">
                     <span th:case="'0'" th:text="PENDING"></span>
                     <span th:case="'1'" th:text="APPROVED"></span>
-                    <span th:case="'3'" th:text="DISAPPROVED"></span>
-                    <span th:case="'4'" th:text="CANCELLED"></span>
+                    <span th:case="'2'" th:text="DISAPPROVED"></span>
+                    <span th:case="'3'" th:text="CANCELLED"></span>
                     <span th:case="*" th:text=""></span>
                 </td>
                 <td>

@@ -3,7 +3,7 @@ $(document).ready(function(){
         event.preventDefault();
         var houseId = $(this).attr('href');
         $('.addConstraintForm #constraint_houseId').attr('value', houseId);
-        $('.addConstraintForm #constraintModalCenter').modal();
+        $('.addConstraintForm #constraintModalCenter').modal('show');
     });
 });
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
         event.preventDefault();
         var houseId = $(this).attr('href');
         $('.addImageForm #image_houseId').attr('value', houseId);
-        $('.addImageForm #imageModalCenter').modal();
+        $('.addImageForm #imageModalCenter').modal('show');
     });
 });
 
@@ -22,7 +22,7 @@ $(document).ready(function(){
         event.preventDefault();
         var houseId = $(this).attr('href');
         $('.addServiceForm #service_houseId').attr('value', houseId);
-        $('.addServiceForm #serviceModalCenter').modal();
+        $('.addServiceForm #serviceModalCenter').modal('show');
     });
 });
 
@@ -31,6 +31,6 @@ $(document).ready(function(){
         event.preventDefault();
         var houseId = $(this).attr('href');
         $('.addAvailabilityForm #availability_houseId').attr('value', houseId);
-        $('.addAvailabilityForm #availabilityModalCenter').modal();
+        $('.addAvailabilityForm #availabilityModalCenter').modal('show');
     });
 });

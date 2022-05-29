@@ -7,8 +7,10 @@ package com.isep.hexchangemanager.controller;
 
 import com.isep.hexchangemanager.form.housemanagement.AddBookingForm;
 import com.isep.hexchangemanager.form.housemanagement.AddHouseForm;
+import com.isep.hexchangemanager.form.housemanagement.ApproveRejectBookingForm;
 import com.isep.hexchangemanager.form.housemanagement.GroupOrder;
 import com.isep.hexchangemanager.model.*;
+import com.isep.hexchangemanager.model.viewmodel.BookingHouseUserAvailability;
 import com.isep.hexchangemanager.service.IAvailabilityService;
 import com.isep.hexchangemanager.service.IBookingService;
 import com.isep.hexchangemanager.service.IHouseService;
@@ -95,6 +97,7 @@ public class BookingController {
             Date endDate = availability.getEndDate();
 
             //update the fields of the booking class
+            booking.setAvailability(availability);
             booking.setHouse(house);
             booking.setUser(user);
             booking.setStartDate(startDate);
@@ -146,14 +149,72 @@ public class BookingController {
             User user = userService.findByEmail(email);
 
             //Get house list
-            List<Booking> bookingList = bookingService.findUserBooking(user);
+            List<BookingHouseUserAvailability> bookingRequestList = bookingService.findBookingRequest(user.getId());
             //Registered in Model
-            model .addAttribute("bookingList" , bookingList );
+            model .addAttribute("bookingRequestList" , bookingRequestList );
         }
         catch(Exception e){
-
+            System.out.println(e.getMessage());
         }
         return "booking/bookingrequest";
+    }
+
+    @GetMapping("/approve")
+    public String approveBooking(Model model , Principal principal,
+                             @ModelAttribute @Validated(GroupOrder.class ) ApproveRejectBookingForm form,
+                             BindingResult bindingResult){
+        // Input check result
+        if (bindingResult.hasErrors()) {
+            // NG: Return to the user signup screen
+            return "dashboard/dashboard";
+        }
+        log.info(form .toString());
+
+        try{
+            Long bookingId = Long.parseLong(form.getBookingId());
+            Long availabilityId = Long.parseLong(form.getAvailabilityId());
+            //Long houseId = Long.parseLong(form.getHouseId());
+
+            bookingService.approveBooking(bookingId,availabilityId);
+
+            model.addAttribute("status", "1");
+            model.addAttribute("message", "Approval successful");
+        }
+        catch(Exception e){
+            model.addAttribute("status", "0");
+            model.addAttribute("message", "Approval not successful");
+            System.out.println(e.getMessage());
+        }
+
+        return "booking/request";
+    }
+
+    @GetMapping("/reject")
+    public String rejectBooking(Model model , Principal principal,
+                             @ModelAttribute @Validated(GroupOrder.class ) ApproveRejectBookingForm form,
+                             BindingResult bindingResult){
+        // Input check result
+        if (bindingResult.hasErrors()) {
+            // NG: Return to the user signup screen
+            return "dashboard/dashboard";
+        }
+        log.info(form .toString());
+
+        try{
+            Long bookingId = Long.parseLong(form.getBookingId());
+
+            bookingService.rejectBooking(bookingId);
+
+            model.addAttribute("status", "1");
+            model.addAttribute("message", "Approval successful");
+        }
+        catch(Exception e){
+            model.addAttribute("status", "0");
+            model.addAttribute("message", "Approval not successful");
+            System.out.println(e.getMessage());
+        }
+
+        return "booking/request";
     }
     
     @PostMapping("/delete")

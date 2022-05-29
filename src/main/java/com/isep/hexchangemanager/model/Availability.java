@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,4 +26,7 @@ public class Availability {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
+
+    @OneToMany(mappedBy = "availability", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 }

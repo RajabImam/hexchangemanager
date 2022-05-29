@@ -46,4 +46,8 @@ public class Booking extends Auditable<String> {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "availability_id", referencedColumnName = "id")
+    private Availability availability;
 }
