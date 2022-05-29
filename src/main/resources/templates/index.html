@@ -3,8 +3,10 @@
       layout:decorate="~{layout/site_layout/layout}">
 
     <head>
+        <script type="text/javascript" src="Date.js"></script>
     </head>
     <body>
+
         <div layout:fragment="content">
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -16,7 +18,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
 
-                        <img src="images/carousel-1.jpg" alt="" width="100%" height="500" />
+                        <img src="images/hero_bg_1.jpg" alt="" width="100%" height="650" />
                         <div class="container">
                             <div class="carousel-caption text-start">
                                 <h1>Example headline.</h1>
@@ -26,7 +28,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="images/carousel-2.jpg" alt="" width="100%" height="500" />
+                        <img src="images/hero_bg_2.jpg" alt="" width="100%" height="650" />
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>Another example headline.</h1>
@@ -36,7 +38,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="images/carousel-1.jpg" alt="" width="100%" height="500" />
+                        <img src="images/carousel-1.jpg" alt="" width="100%" height="650" />
                         <div class="container">
                             <div class="carousel-caption text-end">
                                 <h1>One more for good measure.</h1>
@@ -63,11 +65,22 @@
                         <div class="col-md-12">
                     <form th:action="@{/marketplace/search}" class="row g-2 form-inline" method="get">
                         <div class="form-group col-md-3">
-                            <input type="Date" class="form-control border-0 w-100 py-3" name = "startDate" id="startDate" placeholder="Start Date">
+                            <input type="Date"  class="form-control border-0 w-100 py-3" name = "startDate" min="2022-05-28" id="Date_picker" placeholder="Start Date" >
+                            <script language="javascript">
+                              var today = new Date();
+                              var dd = String(today.getDate()).padStart(2, '0');
+                              var mm = String(today.getMonth() + 1).padStart(2, '0');
+                              var yyyy = today.getFullYear();
+
+                              today = yyyy + '-' + mm + '-' + dd;
+                              $('#date_picker').attr('min',today);
+                                </script>
                         </div>
                         <div class="form-group col-md-3">
                             <input type="Date" class="form-control border-0 w-100 py-3" name = "endDate" id="endDate" placeholder="End Date">
                         </div>
+
+
                         <div class="form-group col-md-3">
                             <input type="text" class="form-control border-0 w-100 py-3" name = "country" id="country" placeholder="Country">
                         </div>
@@ -84,42 +97,345 @@
             <!--Card Layout for Images-->
             <div class="container">
                 <h3>Recommendations</h3>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <div style="width:100%; height:40%;">
-                            <img src="/images/property-1.jpg" class="card-img-top" alt="...">
+                <div class="site-section site-section-sm bg-light">
+                    <div class="container">
+
+                        <div class="row mb-5">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-danger">Rent</span>
+                                            <span class="offer-type bg-success">Exchange</span>
+                                        </div>
+                                        <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">May - April</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">7,000</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
                                 </div>
-                            <div class="card-body">
-                                <h5 class="card-title">House Description</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a th:href="@{/marketplace/details?houseId=1}"><div class="btn btn-warning">Book Now</div></a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <div style="width:100%; height:40%;">
-                            <img src="/images/property-2.jpg" class="card-img-top" alt="...">
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-danger">Rent</span>
+                                            <span class="offer-type bg-success">Exchange</span>
+                                        </div>
+                                        <img src="images/img_2.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">July(04-15th)</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">1,620</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
                                 </div>
-                            <div class="card-body">
-                                <h5 class="card-title">House Description</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a th:href="@{/marketplace/details?houseId=1}"><div class="btn btn-warning">Book Now</div></a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-info">Lease</span>
+                                        </div>
+                                        <img src="images/img_3.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">Available</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">5,500</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-danger">Rent</span>
+                                            <span class="offer-type bg-success">Exchange</span>
+                                        </div>
+                                        <img src="images/img_4.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">February</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">7,000</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-danger">Rent</span>
+                                            <span class="offer-type bg-success">Exchange</span>
+                                        </div>
+                                        <img src="images/img_5.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">Available</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">1,620</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-info">Lease</span>
+                                        </div>
+                                        <img src="images/img_6.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">Available</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">5,500</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-danger">Rent</span>
+                                            <span class="offer-type bg-success">Exchange</span>
+                                        </div>
+                                        <img src="images/img_7.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">January - August</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">7,000</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-danger">Rent</span>
+                                            <span class="offer-type bg-success">Exchange</span>
+                                        </div>
+                                        <img src="images/img_8.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">January(23-30th)</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">1,620</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="property-entry h-100">
+                                    <a href="property-details.html" class="property-thumbnail">
+                                        <div class="offer-type-wrap">
+                                            <span class="offer-type bg-info">Lease</span>
+                                        </div>
+                                        <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div class="p-4 property-body">
+                                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                        <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+                                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+                                        <strong class="property-price text-primary mb-3 d-block text-success">Booked</strong>
+                                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                            <li>
+                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs-number">2 <sup>+</sup></span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs-number">2</span>
+
+                                            </li>
+                                            <li>
+                                                <span class="property-specs">SQ FT</span>
+                                                <span class="property-specs-number">5,500</span>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <div style="width:100%; height:40%;">
-                                <img src="/images/property-3.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">House Description</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a th:href="@{/marketplace/details?houseId=1}"><div class="btn btn-warning">Book Now</div></a>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="site-pagination">
+                                    <a href="#" class="active">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <span>...</span>
+                                    <a href="#">10</a>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

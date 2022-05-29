@@ -18,6 +18,7 @@ import com.isep.hexchangemanager.service.IBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,11 +70,15 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
+    @Transactional
     public void approveBooking(Long bookingId, Long availabilityId) {
-        bookingRepository.approveBookingwithBookingIdAvailabilityId(bookingId,availabilityId);
+        bookingRepository.approveBooking(bookingId);
+        bookingRepository.rejectOtherBookings(bookingId,availabilityId);
+        bookingRepository.deleteAvailability(availabilityId);
     }
 
     @Override
+    @Transactional
     public void rejectBooking(Long bookingId) {
         bookingRepository.rejectBookingwithBookingId(bookingId);
     }

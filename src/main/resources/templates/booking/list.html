@@ -46,6 +46,7 @@
             <thead class ="thead-light" >
             <tr>
                 <th class ="th-width" >Id</th>
+                <th class ="th-width" >House</th>
                 <th class ="th-width" >Start Date</th>
                 <th class ="th-width" >End Date</th>
                 <th class ="th-width" >Status</th>
@@ -55,6 +56,7 @@
             <tbody>
             <tr th:each ="booking: ${bookingList}" >
                 <td th:text ="${booking.id}" ></td>
+                <td th:text = "${booking.house.name}"></td>
                 <td th:text ="${booking.startDate}" ></td>
                 <td th:text ="${booking.endDate}" ></td>
                 <td th:switch="${booking.status}">
@@ -65,9 +67,6 @@
                     <span th:case="*" th:text=""></span>
                 </td>
                 <td>
-                    <a class ="btn btn-primary" th:href ="@{'/house/detail?houseId='}">
-                        View House
-                    </a>
                     <!-- <a th:href = "@{'/image/add'}" class ="btn btn-primary">-->
                     <span th:if="${booking.status == 0}">
                         <a th:href = @{${booking.id}} class ="btn btn-primary imageBtn" >

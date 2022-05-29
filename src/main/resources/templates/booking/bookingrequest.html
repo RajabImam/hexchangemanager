@@ -10,6 +10,12 @@
 
 <body>
 <div layout:fragment ="content" >
+    <div style="margin:0px;" class="bg-danger text-white text-center" th:if="${status == '0'}">
+        <span  th:text="${message}"></span>
+    </div>
+    <div style="margin:0px;" class="bg-success text-white text-center" th:if="${status == '1'}">
+        <span th:text="${message}"></span>
+    </div>
     <div class ="header border-bottom" >
         <h1 class ="h2" >Booking Request</h1>
     </div>
@@ -52,16 +58,27 @@
                 <td th:text ="${bookingRequest.houseName}"></td>
                 <td th:text ="${bookingRequest.bookingStart}"></td>
                 <td th:text ="${bookingRequest.bookingEnd}"></td>
-                <td>
-                    <a class ="btn btn-primary" th:href ="@{'/booking/approve?bookingId=' + ${bookingRequest.bookingId} + '&availabilityId=' + ${bookingRequest.availabilityId}}" >
+                <th:block th:if ="*{bookingRequest.bookingStatus == 0}" >
+                <td >
+                    <a class ="btn btn-success" th:href ="@{'/booking/approve?bookingId=' + ${bookingRequest.bookingId} + '&availabilityId=' + ${bookingRequest.availabilityId}}" >
                         Approve
                     </a>
                 </td>
                 <td>
-                    <a class ="btn btn-primary" th:href ="@{'/booking/approve?bookingId=' + ${bookingRequest.bookingId}}" >
+                    <a class ="btn btn-danger" th:href ="@{'/booking/reject?bookingId=' + ${bookingRequest.bookingId} + '&availabilityId=' + ${bookingRequest.availabilityId}}" >
                         Reject
                     </a>
                 </td>
+                </th:block>
+                <th:block th:if ="*{bookingRequest.bookingStatus == 1}" >
+                    <td th:text = "YOU APPROVED"></td>
+                </th:block>
+                <th:block th:if ="*{bookingRequest.bookingStatus == 2}" >
+                    <td th:text = "YOU REJECTED"></td>
+                </th:block>
+                <th:block th:if ="*{bookingRequest.bookingStatus == 3}" >
+                    <td th:text = "USER CANCELLED"></td>
+                </th:block>
             </tr>
             </tbody>
         </table>

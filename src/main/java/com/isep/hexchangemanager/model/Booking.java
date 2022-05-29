@@ -39,7 +39,7 @@ public class Booking extends Auditable<String> {
     @Temporal(TemporalType.DATE)
     private java.util.Date endDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "house_id", referencedColumnName = "id")
     private House house;
 

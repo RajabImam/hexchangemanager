@@ -3,6 +3,7 @@ package com.isep.hexchangemanager.controller;
 import com.isep.hexchangemanager.form.housemanagement.AddBookingForm;
 import com.isep.hexchangemanager.form.housemanagement.AddHouseForm;
 import com.isep.hexchangemanager.model.House;
+import com.isep.hexchangemanager.model.Image;
 import com.isep.hexchangemanager.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -66,7 +67,7 @@ public class MarketPlaceController {
         }
         else{
             String message = houses.size() + "results found";
-            model.addAttribute("status", "");
+            model.addAttribute("status", message);
             model.addAttribute("houseList", houses);
         }
         return "marketplace/searchresult";
@@ -81,7 +82,7 @@ public class MarketPlaceController {
             house.setConstraints(hConstraintService.findHouseConstraint(house));
             //add the services
             house.setServices(hServiceService.findHouseService(house));
-            //get availability images
+            //get available images
             house.setImages(imageService.findHouseImage(house));
             //get availability dates
             house.setAvailabilities(availabilityService.findHouseAvailability(house));

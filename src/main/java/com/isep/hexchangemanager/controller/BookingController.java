@@ -186,7 +186,7 @@ public class BookingController {
             System.out.println(e.getMessage());
         }
 
-        return "booking/request";
+        return "booking/bookingrequest";
     }
 
     @GetMapping("/reject")
@@ -206,15 +206,15 @@ public class BookingController {
             bookingService.rejectBooking(bookingId);
 
             model.addAttribute("status", "1");
-            model.addAttribute("message", "Approval successful");
+            model.addAttribute("message", "Reject successful");
         }
         catch(Exception e){
             model.addAttribute("status", "0");
-            model.addAttribute("message", "Approval not successful");
+            model.addAttribute("message", "Reject not successful");
             System.out.println(e.getMessage());
         }
 
-        return "booking/request";
+        return "booking/bookingrequest";
     }
     
     @PostMapping("/delete")

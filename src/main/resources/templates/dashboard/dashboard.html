@@ -45,12 +45,11 @@
         </div>
         <div class="row">
             <div class="col-md-4 mb-4 btn">
-                <a  th:href ="@{'/house/list'}">
+                <a  th:href ="@{'#'}">
                 <div class="card bg-primary text-white h-100">
                     <div class="card-body py-5">
                         <span th:text="${#dates.format(#dates.createNow(), 'hh:mm a')}"></span>
                         <span th:text="${#dates.format(#dates.createNow(), 'dd MMM YYYY')}"></span>
-
                     </div>
                     <div class="card-footer d-flex">
                         View Details
@@ -62,7 +61,7 @@
                 </a>
             </div>
             <div class="col-md-4 mb-4 btn">
-                <a  th:href ="@{'/booking/add'}">
+                <a  th:href ="@{/marketplace/search?startDate=&endDate=&country=France}">
                 <div class="card bg-warning text-dark h-100">
                     <div class="card-body py-5">Market Place</div>
                     <div class="card-footer d-flex">
