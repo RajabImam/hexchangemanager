@@ -113,7 +113,7 @@ public class ImagesController {
              
             model.addAttribute("status", "Image added successfully");
             //success message
-            session.setAttribute("message", new Message("Image Added Successfully - Add more ...", "success"));
+            session.setAttribute("message", new Message("Image Added Successfully - You must add 3 images to advertise", "success"));
         }
         catch (Exception e){
             model.addAttribute("status", "Images added not successful");

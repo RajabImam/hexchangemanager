@@ -85,7 +85,7 @@ public class AvailabilityController {
         try{
             //map form details to the house model
             Availability availability = modelMapper.map(form, Availability.class);
-
+            availability.setStatus(1);
         //get house id from the form
         Long houseId = form.getHouseId();
 
@@ -108,15 +108,14 @@ public class AvailabilityController {
             //add availability to database
             availabilityService.addAvailability(availability);
             model.addAttribute("status", "1");
-            model.addAttribute("message", "Availability added successfully");
             //success message
-            session.setAttribute("message", new Message("Availability Added Successfully - ", "success"));
+            session.setAttribute("message", new Message("Availability Added Successfully", "success"));
         }
 
         //else return error message
         else{
             model.addAttribute("status", "0");
-            model.addAttribute("message", result.get(0));
+            session.setAttribute("message", new Message(result.get(0), "danger"));
         }
         }
         catch (Exception e){

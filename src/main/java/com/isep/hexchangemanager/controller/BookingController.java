@@ -113,12 +113,12 @@ public class BookingController {
 
             bookingService.save(booking);
             model.addAttribute("status", "1");
-            model.addAttribute("message", "Booking added successfully");
+            //model.addAttribute("message", "Booking added successfully");
             session.setAttribute("message", new Message("Booking added successfully", "success"));
         }
         catch (Exception e){
             model.addAttribute("status", "0");
-            model.addAttribute("message", "Booking not successful");
+            //model.addAttribute("message", "Booking not successful");
             session.setAttribute("message", new Message("Booking not added. Try again", "danger"));
             log.error(e.getMessage());
         }
@@ -151,7 +151,7 @@ public class BookingController {
             //Get house list
             List<BookingHouseUserAvailability> bookingRequestList = bookingService.findBookingRequest(user.getId());
             //Registered in Model
-            model .addAttribute("bookingRequestList" , bookingRequestList );
+            model.addAttribute("bookingRequestList" , bookingRequestList );
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -161,7 +161,7 @@ public class BookingController {
 
     @GetMapping("/approve")
     public String approveBooking(Model model , Principal principal,
-                             @ModelAttribute @Validated(GroupOrder.class ) ApproveRejectBookingForm form,
+                             @ModelAttribute @Validated(GroupOrder.class ) ApproveRejectBookingForm form,HttpSession session,
                              BindingResult bindingResult){
         // Input check result
         if (bindingResult.hasErrors()) {
@@ -178,11 +178,13 @@ public class BookingController {
             bookingService.approveBooking(bookingId,availabilityId);
 
             model.addAttribute("status", "1");
-            model.addAttribute("message", "Approval successful");
+            session.setAttribute("message" , new Message("Approval successful", "success"));
+            //model.addAttribute("message", "Approval successful");
         }
         catch(Exception e){
             model.addAttribute("status", "0");
-            model.addAttribute("message", "Approval not successful");
+            session.setAttribute("message" , new Message("Approval not successful", "danger"));
+            //model.addAttribute("message", "Approval not successful");
             System.out.println(e.getMessage());
         }
 

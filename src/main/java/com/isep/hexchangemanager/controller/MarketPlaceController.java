@@ -4,7 +4,9 @@ import com.isep.hexchangemanager.form.housemanagement.AddBookingForm;
 import com.isep.hexchangemanager.form.housemanagement.AddHouseForm;
 import com.isep.hexchangemanager.model.House;
 import com.isep.hexchangemanager.model.Image;
+import com.isep.hexchangemanager.model.viewmodel.AdvertViewModel;
 import com.isep.hexchangemanager.service.*;
+import com.isep.hexchangemanager.util.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,36 +48,53 @@ public class MarketPlaceController {
 
     @GetMapping("/search")
     public String getSearch(Model model, @RequestParam("startDate") String startDate,
-                                        @RequestParam("endDate") String endDate,
-                                        @RequestParam("country") String country){
+                            @RequestParam("endDate") String endDate,
+                            @RequestParam("country") String country, HttpSession session){
+        try{
+            List<House> houses = new ArrayList<House>();
 
-        List<House> houses = new ArrayList<House>();
+            if(startDate.isEmpty() && endDate.isEmpty()){
+                houses = houseService.houseSearchbyCountry(country);
+            }
 
-        if(startDate.isEmpty() && endDate.isEmpty()){
-            houses = houseService.houseSearchbyCountry(country);
-        }
+            else if(endDate.isEmpty() && country.isEmpty()){
+                houses = houseService.houseSearchbystartDate(startDate);
+            }
 
-        else if(endDate.isEmpty() && country.isEmpty()){
-            houses = houseService.houseSearchbystartDate(startDate);
-        }
+            else{
+                houses = houseService.houseSearchByDateAndCountry(startDate, endDate, country);
+            }
 
-        else{
-            houses = houseService.houseSearchByDateAndCountry(startDate, endDate, country);
-        }
+            if(houses.isEmpty()){
+                session.setAttribute("message", new Message("No house found", "danger"));
+            }
+            else{
+                List<AdvertViewModel> adverts = new ArrayList<>();
 
-        if(houses.isEmpty()){
-            model.addAttribute("status", "No house found");
+                for (House house: houses){
+                    AdvertViewModel advertView = new AdvertViewModel();
+                    advertView.setHouseId(house.getId());
+                    advertView.setHouseName(house.getName());
+                    advertView.setHouseType(house.getType());
+                    advertView.setHouseDescription(house.getDescription());
+                    advertView.setHouseImage(house.getImages().get(0).getMain_image());
+                    advertView.setHouseImageId(house.getImages().get(0).getId());
+                    adverts.add(advertView);
+                }
+                String message = houses.size() + " results found";
+                session.setAttribute("message", new Message(message, "success"));
+                model.addAttribute("adverts", adverts);
+            }
+            return "marketplace/searchresult";
         }
-        else{
-            String message = houses.size() + "results found";
-            model.addAttribute("status", message);
-            model.addAttribute("houseList", houses);
-        }
-        return "marketplace/searchresult";
+       catch(Exception e){
+            System.out.println(e.getMessage());
+       }
+        return "/";
     }
 
     @GetMapping("/details")
-    public String getDetails(Model model, @RequestParam("houseId") String houseId, @ModelAttribute AddBookingForm form){
+    public String getDetails(Model model, @RequestParam("houseId") String houseId, @ModelAttribute AddBookingForm form,HttpSession session){
         try{
             //get house by id
             House house = houseService.findById(Long.parseLong(houseId)).get();
@@ -90,7 +110,7 @@ public class MarketPlaceController {
             model.addAttribute("house", house);
         }
         catch(Exception e){
-            model.addAttribute("status", "An error occured");
+            session.setAttribute("message", new Message("An error occured", "danger"));
         }
 
         return "marketplace/details";

@@ -106,7 +106,7 @@ public class ProfileController {
             
             User savedUser = userService.updateUser(user);
             
-            String profileDir = "./uploads/" + savedUser.getId();
+            String profileDir = "images/uploads/" + savedUser.getId();
             
             FileUploadUtility.saveFile(profileDir, fileName, multipartFile);
             session.setAttribute("message", new com.isep.hexchangemanager.util.Message("Profile updated successfully", "success"));
@@ -119,7 +119,7 @@ public class ProfileController {
        loginUser.setFirstName(user.getFirstname());
        loginUser.setLastName(user.getLastname());
        
-       return "/user/profile";
+       return "redirect:/user/profile";
     }
     
     //change password handler
@@ -156,7 +156,7 @@ public class ProfileController {
            session.setAttribute("message", new com.isep.hexchangemanager.util.Message("Wrong old password. Try again", "danger"));
        } 
         
-        return "/user/profile";
+        return "redirect:/user/profile";
     }
 
 }

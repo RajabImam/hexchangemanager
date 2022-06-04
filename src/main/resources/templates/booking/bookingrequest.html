@@ -71,13 +71,13 @@
                 </td>
                 </th:block>
                 <th:block th:if ="*{bookingRequest.bookingStatus == 1}" >
-                    <td th:text = "YOU APPROVED"></td>
+                    <td th:text = "${'YOU APPROVED'}"></td>
                 </th:block>
                 <th:block th:if ="*{bookingRequest.bookingStatus == 2}" >
-                    <td th:text = "YOU REJECTED"></td>
+                    <td th:text = "${'YOU REJECTED'}"></td>
                 </th:block>
                 <th:block th:if ="*{bookingRequest.bookingStatus == 3}" >
-                    <td th:text = "USER CANCELLED"></td>
+                    <td th:text = "${'USER CANCELLED'}"></td>
                 </th:block>
             </tr>
             </tbody>

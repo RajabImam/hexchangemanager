@@ -41,8 +41,8 @@ public class UserService implements UserDetailsService {
     }
     
     public User updateUser(User user){
-        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        //user.setPassword(encoder.encode(user.getPassword()));
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
         Role userRole = new Role("USER");
         List<Role> roles = new ArrayList<>();
         roles.add(userRole);

@@ -54,7 +54,7 @@ and open the template in the editor.
 
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
 
 <header>
     <div layout:replace="~{layout/site_layout/header::header}"></div>
@@ -63,7 +63,6 @@ and open the template in the editor.
 <main>
     <div layout:fragment="content"></div>
     <!-- FOOTER -->
-
     <footer layout:replace="~{layout/site_layout/footer::footer}"></footer>
 </main>
 

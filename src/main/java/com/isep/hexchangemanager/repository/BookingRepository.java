@@ -35,7 +35,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     void rejectOtherBookings(@Param("bookingId")Long bookingId, @Param("availabilityId")Long availabilityId);
 
     @Modifying
-    @Query(value = "delete from availability where id = :availabilityId",
+    @Query(value = "update availability set status = 0 where id = :availabilityId",
             nativeQuery = true)
     void deleteAvailability(@Param("availabilityId")Long availabilityId);
 

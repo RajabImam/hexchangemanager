@@ -21,7 +21,7 @@ public class Availability {
     @Temporal(TemporalType.DATE)
     private java.util.Date endDate;
 
-    //private Integer status;
+    private Integer status;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "house_id", referencedColumnName = "id")

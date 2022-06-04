@@ -31,7 +31,8 @@ public interface HouseRepository extends JpaRepository<House, Long>{
             "H.id = A.house_id WHERE " +
             "H.country = :country AND " +
             "A.start_date = :startDate AND " +
-            "A.end_date = :endDate",
+            "A.end_date = :endDate AND " +
+            "A.status = 1",
             nativeQuery = true)
     List<House> findAvailableHouseByDurationAndCountry(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("country") String country);
 
@@ -40,7 +41,8 @@ public interface HouseRepository extends JpaRepository<House, Long>{
             "H.postalcode, H.type, H.user_id from house H " +
             "RIGHT JOIN availability A on " +
             "H.id = A.house_id WHERE " +
-            "H.country = :country",
+            "H.country = :country AND "+
+            "A.status = 1",
             nativeQuery = true)
     List<House> findAvailableHouseByCountry(@Param("country") String country);
 
@@ -49,7 +51,8 @@ public interface HouseRepository extends JpaRepository<House, Long>{
             "H.postalcode, H.type, H.user_id from house H " +
             "RIGHT JOIN availability A on " +
             "H.id = A.house_id WHERE " +
-            "A.start_date = :startDate",
+            "A.start_date = :startDate AND "+
+            "A.status = 1",
             nativeQuery = true)
     List<House> findAvailableHouseByStartDate(@Param("startDate") String startDate);
 

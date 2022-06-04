@@ -47,6 +47,8 @@
             <tr>
                 <th class ="th-width" >Id</th>
                 <th class ="th-width" >House</th>
+                <th class ="th-width" >Address</th>
+                <th class ="th-width" >Owner</th>
                 <th class ="th-width" >Start Date</th>
                 <th class ="th-width" >End Date</th>
                 <th class ="th-width" >Status</th>
@@ -57,6 +59,8 @@
             <tr th:each ="booking: ${bookingList}" >
                 <td th:text ="${booking.id}" ></td>
                 <td th:text = "${booking.house.name}"></td>
+                <td th:text = "${booking.house.address}"></td>
+                <td th:text = "${booking.house.createdBy}"></td>
                 <td th:text ="${booking.startDate}" ></td>
                 <td th:text ="${booking.endDate}" ></td>
                 <td th:switch="${booking.status}">
